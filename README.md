@@ -32,3 +32,12 @@ Welcome to the traditional game of Aduhuli, also known as Goat and Tigers. This 
 
 ## Avoiding Repetition
 To prevent repetitive cycles of positions, once all goats are placed, no move may return the board to a situation that has already occurred during the game. This rule helps keep the gameplay dynamic and prevents stalling tactics.
+
+
+Let's model this game:
+
+Let's say we have a board mxn, where m is the number of rows and n is the number of columns. Each cell represents a position on the board. The cell can be thought of as a node in a graph. The edges of the graph are the possible moves from one cell to another. The game board can be represented as a graph where each cell is a node and the edges represent the possible moves from one cell to another. The game board can be represented as an adjacency list or an adjacency matrix.
+
+Not all cells are valid cells. Some cells are invalid because they are outside the board.
+Also not all cells are connected to all other cells. Some cells are connected to only a subset of cells.
+Every connected (edge) is a bi-directional connection. If a tiger can move from cell A to cell B, then it can also move from cell B to cell A given that there is no one else in the way.
