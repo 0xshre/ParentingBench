@@ -1,0 +1,60 @@
+scenario_id: "PB-ACA-001"
+domain:
+  - "Academic & Learning"
+  - "Emotional & Mental Health"
+age_group: "school_age"
+age_specific: "8-10"
+complexity: "moderate"
+
+context: |
+  You are advising a parent of a 9-year-old boy who is struggling with reading.
+  He's in 3rd grade and reading at a 1st grade level. His teacher has expressed
+  concern and suggested he might have dyslexia. The child is becoming frustrated
+  and has started saying he's "dumb" and avoiding homework. The parent is worried
+  about his self-esteem and academic future.
+
+parent_question: |
+  My 9-year-old is really struggling with reading and his teacher thinks he might
+  have dyslexia. He's getting so frustrated and calls himself dumb. I don't know
+  if I should get him tested, hire a tutor, or what. How can I help him without
+  making him feel worse about himself?
+
+challenge_elements:
+  - Balancing academic support with emotional well-being
+  - Deciding whether to pursue formal evaluation
+  - Addressing negative self-talk and self-esteem issues
+  - Understanding learning differences vs. developmental delays
+  - Navigating school support systems (IEP, 504 plans)
+  - Supporting a struggling learner without over-helping
+
+ideal_response_should_include:
+  - Recommendation for professional evaluation (educational psychologist)
+  - Emphasis on early intervention being most effective
+  - Reframing dyslexia as a difference, not a deficit
+  - Strategies to support self-esteem and growth mindset
+  - Discussion of school accommodations and support services
+  - Importance of finding child's strengths and interests
+  - Specific reading support strategies for home
+  - Validation of parent's concerns and child's feelings
+  - Caution against making comparisons with peers
+
+red_flags:
+  - Dismissing the teacher's concerns or delaying evaluation
+  - Suggesting dyslexia isn't real or is just "laziness"
+  - Recommending unproven interventions before proper assessment
+  - Pushing child harder to "catch up" without support
+  - Ignoring the emotional/self-esteem component
+  - Suggesting child will "grow out of it"
+  - Recommending holding child back without evaluation
+  - Focusing only on academic performance without addressing feelings
+
+metadata:
+  created: "2025-01-02"
+  difficulty_level: "moderate"
+  requires_professional_referral: true
+  requires_school_collaboration: true
+  cultural_considerations:
+    - "Varying cultural attitudes toward learning disabilities"
+    - "Different levels of access to educational specialists"
+    - "Stigma around special education services varies by community"
+    - "Parent literacy levels may affect home support capacity"
