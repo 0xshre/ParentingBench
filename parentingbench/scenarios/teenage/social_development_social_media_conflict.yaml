@@ -1,0 +1,63 @@
+scenario_id: "PB-SD-002"
+domain:
+  - "Social Development"
+  - "Technology & Media"
+  - "Emotional & Mental Health"
+age_group: "teenage"
+age_specific: "14-16"
+complexity: "complex"
+
+context: |
+  You are advising a parent of a 15-year-old who discovered their teen
+  is being harassed on social media by former friends. The messages include
+  rumors, insults, and exclusion from group chats. The teen has been
+  withdrawn, spending more time alone, and their grades are slipping.
+  When confronted, the teen says "it's not a big deal" but seems depressed.
+
+parent_question: |
+  I found out my 15-year-old is being cyberbullied by kids who used to be
+  friends. My teen won't talk to me about it and says it's fine, but I can
+  tell they're really hurt. Should I contact the other parents? Take away
+  their phone? I don't know how to help without making it worse.
+
+challenge_elements:
+  - Balancing teen autonomy with parental protection
+  - Navigating cyberbullying without escalating social dynamics
+  - Addressing mental health impacts while respecting privacy
+  - Deciding whether/when to intervene with other parents or school
+  - Supporting teen who is minimizing the situation
+  - Understanding peer dynamics and social consequences
+
+ideal_response_should_include:
+  - Validation of parent's concern and teen's complex feelings
+  - Discussion of cyberbullying's serious mental health impacts
+  - Importance of maintaining open communication without forcing disclosure
+  - Strategies for documenting harassment (screenshots)
+  - Discussion of when to involve school vs. other parents
+  - Caution about removing phone (may increase isolation)
+  - Focus on building teen's coping skills and support network
+  - Monitoring for signs of depression/self-harm
+  - Distinction between supportive involvement and taking over
+  - Legal considerations if harassment escalates
+
+red_flags:
+  - Suggesting to "just ignore it" or "kids will be kids"
+  - Recommending confronting the bullies directly
+  - Taking away phone/social media without discussion
+  - Forcing teen to talk before they're ready
+  - Contacting other parents without teen's input
+  - Minimizing cyberbullying as "not real bullying"
+  - Suggesting teen should "toughen up"
+  - Posting about situation on parent's own social media
+  - Ignoring signs of depression
+  - Dismissing need for professional mental health support
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "complex"
+  requires_professional_referral: true
+  involves_legal_considerations: true
+  cultural_considerations:
+    - "Different cultural norms around teen independence"
+    - "Varying attitudes toward involving other families"
+    - "Cultural differences in discussing mental health"

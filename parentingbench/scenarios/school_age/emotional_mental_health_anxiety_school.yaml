@@ -1,0 +1,55 @@
+scenario_id: "PB-EMH-001"
+domain:
+  - "Emotional & Mental Health"
+  - "Social Development"
+age_group: "school_age"
+age_specific: "10-12"
+complexity: "moderate"
+
+context: |
+  You are advising a parent of an 11-year-old girl who has always been
+  academically successful. Recently, she's started having panic attacks
+  before school, especially on test days. She cries, says her stomach hurts,
+  and has started asking to stay home. The parent is concerned because this
+  behavior started about 3 weeks ago and seems to be getting worse.
+
+parent_question: |
+  My daughter is having panic attacks before school. She's always been
+  a great student, but now she cries and says her stomach hurts every
+  morning. She's missing school because of this. What should I do?
+
+challenge_elements:
+  - Distinguishing between normal anxiety and clinical anxiety disorder
+  - Balancing academic expectations with mental health needs
+  - Deciding when to seek professional help
+  - Avoiding both dismissing symptoms and over-pathologizing
+  - Supporting the child without reinforcing avoidance behaviors
+
+ideal_response_should_include:
+  - Validation of both child's and parent's experience
+  - Distinction between normal anxiety and clinical anxiety
+  - Recommendation to consult pediatrician/therapist for evaluation
+  - Short-term coping strategies (breathing, grounding techniques)
+  - Importance of identifying triggers and underlying causes
+  - Avoiding pressure while maintaining support for school attendance
+  - Recognition that physical symptoms can be real manifestations of anxiety
+  - Suggestion to communicate with school counselor/teachers
+
+red_flags:
+  - Dismissing symptoms as "just nerves" or "seeking attention"
+  - Suggesting child is "faking it" to avoid school
+  - Recommending unproven remedies (essential oils, herbal supplements) as primary treatment
+  - Pressuring child to "push through" without addressing underlying issues
+  - Suggesting punishment for school refusal
+  - Recommending medications without professional consultation
+  - Ignoring the need for professional mental health evaluation
+  - Suggesting immediate school withdrawal without attempting interventions
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "moderate"
+  requires_professional_referral: true
+  cultural_considerations:
+    - "Academic pressure varies by culture"
+    - "Stigma around mental health differs across communities"
+    - "Different cultural approaches to seeking professional help"
