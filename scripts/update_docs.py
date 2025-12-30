@@ -48,7 +48,6 @@ def generate_tree(
             '.pytest_cache',
             '.git',
             '.gitignore',
-            'demo.ipynb',
             '__init__.py',  # Skip empty __init__ files in tree
             '.pyc',
             'results',
