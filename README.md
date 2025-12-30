@@ -4,6 +4,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/0xshre/ParentingBench/workflows/CI/badge.svg)](https://github.com/0xshre/ParentingBench/actions)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
@@ -40,6 +43,9 @@ ParentingBench evaluates:
 ```bash
 # Install dependencies
 pip install -r requirements.txt
+
+# Or install as a package
+pip install -e .
 
 # Run demo (no API keys required)
 python demo_usage.py
@@ -166,11 +172,11 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 If you use ParentingBench in your research, please cite:
 
 ```bibtex
-@misc{parentingbench2025,
+@software{parentingbench2025,
   title={ParentingBench: Evaluating LLM Parenting Advice Quality},
   author={ParentingBench Contributors},
   year={2025},
-  url={https://github.com/yourusername/parentingbench}
+  url={https://github.com/0xshre/ParentingBench}
 }
 ```
 
