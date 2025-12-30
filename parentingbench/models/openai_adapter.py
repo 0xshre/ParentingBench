@@ -1,7 +1,6 @@
 """OpenAI API adapter."""
 
 import os
-from typing import Optional, Dict
 
 from .base import BaseModel
 
@@ -9,7 +8,7 @@ from .base import BaseModel
 class OpenAIModel(BaseModel):
     """Adapter for OpenAI models."""
 
-    def __init__(self, model_name: str = "gpt-4", api_key: Optional[str] = None, **kwargs):
+    def __init__(self, model_name: str = "gpt-4", api_key: str | None = None, **kwargs):
         """
         Initialize OpenAI model.
 
@@ -22,10 +21,13 @@ class OpenAIModel(BaseModel):
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
 
         if not self.api_key:
-            raise ValueError("OpenAI API key required. Set OPENAI_API_KEY environment variable or pass api_key parameter.")
+            raise ValueError(
+                "OpenAI API key required. Set OPENAI_API_KEY environment variable or pass api_key parameter."
+            )
 
         try:
             from openai import OpenAI
+
             self.client = OpenAI(api_key=self.api_key)
         except ImportError:
             raise ImportError("openai package not installed. Install with: pip install openai")
@@ -33,10 +35,10 @@ class OpenAIModel(BaseModel):
     def generate(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None,
+        system_prompt: str | None = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate response using OpenAI API.
@@ -63,15 +65,11 @@ class OpenAIModel(BaseModel):
             messages=messages,
             temperature=temperature,
             max_tokens=max_tokens,
-            **kwargs
+            **kwargs,
         )
 
         return response.choices[0].message.content
 
-    def get_model_info(self) -> Dict:
+    def get_model_info(self) -> dict:
         """Get OpenAI model information."""
-        return {
-            "provider": "openai",
-            "model_name": self.model_name,
-            "api_version": "v1"
-        }
+        return {"provider": "openai", "model_name": self.model_name, "api_version": "v1"}

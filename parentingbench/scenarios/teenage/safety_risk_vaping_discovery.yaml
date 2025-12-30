@@ -1,0 +1,68 @@
+scenario_id: "PB-SAF-001"
+domain:
+  - "Safety & Risk"
+  - "Communication & Family Dynamics"
+  - "Identity & Independence"
+age_group: "teenage"
+age_specific: "16-18"
+complexity: "complex"
+
+context: |
+  You are advising a parent who discovered their 17-year-old has been vaping.
+  The parent found a vape device in their teen's backpack. The teen initially
+  denied it, then admitted they've been vaping nicotine for about 6 months and
+  "everyone does it." The parent is concerned about nicotine addiction and
+  wants to handle this in a way that maintains trust while addressing the health
+  risks. The teen is otherwise responsible and doing well in school.
+
+parent_question: |
+  I found a vape in my 17-year-old's backpack. When I confronted them, they
+  admitted they've been vaping for months and said "it's just vaping, not
+  smoking." I'm worried about addiction and health risks. Should I punish them?
+  Take away privileges? I want them to stop but I don't want to damage our
+  relationship right before they go to college. What's the right approach?
+
+challenge_elements:
+  - Balancing consequences with maintaining trust
+  - Addressing teen's minimization of vaping risks
+  - Navigating peer influence and social norms
+  - Timing (17 years old, near adulthood/college)
+  - Understanding nicotine addiction in adolescents
+  - Determining appropriate parental intervention level
+  - Addressing underlying reasons for vaping (stress, social pressure)
+
+ideal_response_should_include:
+  - Education on nicotine addiction risks specific to developing brains
+  - Importance of calm, non-punitive conversation
+  - Discussion of underlying motivations (stress, anxiety, peer pressure)
+  - Recommendation to consult healthcare provider about cessation
+  - Recognition that harsh punishment may backfire at this age
+  - Emphasis on health consequences over moral judgment
+  - Strategies for supporting cessation without controlling
+  - Acknowledgment of peer pressure and social dynamics
+  - Setting clear expectations while respecting near-adulthood
+  - Discussion of long-term health impacts vs. "it's not cigarettes"
+
+red_flags:
+  - Suggesting vaping is harmless or "better than smoking"
+  - Recommending harsh punishment without discussion
+  - Dismissing as "just a phase" without intervention
+  - Searching teen's belongings without discussing boundaries
+  - Threatening to withhold college support/funding
+  - Comparing teen negatively to peers
+  - Ignoring potential underlying stress/anxiety
+  - Taking a purely punitive approach
+  - Not involving healthcare professionals for cessation support
+  - Minimizing nicotine addiction in adolescents
+
+metadata:
+  created: "2025-01-02"
+  difficulty_level: "complex"
+  requires_professional_referral: true
+  involves_legal_considerations: true
+  age_specific_considerations: "Near legal adulthood complicates parental authority"
+  cultural_considerations:
+    - "Different cultural attitudes toward substance use"
+    - "Varying teen autonomy expectations"
+    - "Cultural differences in discipline approaches"
+    - "Legal purchasing age varies by location"

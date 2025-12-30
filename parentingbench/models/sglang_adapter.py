@@ -1,7 +1,5 @@
 """SGLang adapter for high-performance local LLM inference."""
 
-from typing import Optional, Dict
-
 from .base import BaseModel
 
 
@@ -23,10 +21,10 @@ class SGLangModel(BaseModel):
     def __init__(
         self,
         model_name: str,
-        api_key: Optional[str] = None,
+        api_key: str | None = None,
         host: str = "http://localhost",
         port: int = 30000,
-        **kwargs
+        **kwargs,
     ):
         """
         Initialize SGLang model.
@@ -53,11 +51,10 @@ class SGLangModel(BaseModel):
 
         try:
             import requests
+
             self.requests = requests
         except ImportError:
-            raise ImportError(
-                "requests package not installed. Install with: pip install requests"
-            )
+            raise ImportError("requests package not installed. Install with: pip install requests")
 
         # Check if server is running
         try:
@@ -73,10 +70,10 @@ class SGLangModel(BaseModel):
     def generate(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None,
+        system_prompt: str | None = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate response using SGLang server.
@@ -104,14 +101,12 @@ class SGLangModel(BaseModel):
             "temperature": temperature,
             "max_tokens": max_tokens,
             "stream": False,
-            **kwargs
+            **kwargs,
         }
 
         try:
             response = self.requests.post(
-                f"{self.base_url}/v1/chat/completions",
-                json=payload,
-                timeout=120
+                f"{self.base_url}/v1/chat/completions", json=payload, timeout=120
             )
             response.raise_for_status()
 
@@ -119,16 +114,16 @@ class SGLangModel(BaseModel):
             return result["choices"][0]["message"]["content"]
 
         except self.requests.exceptions.Timeout:
-            raise TimeoutError(f"SGLang request timed out after 120s")
+            raise TimeoutError("SGLang request timed out after 120s")
         except self.requests.exceptions.RequestException as e:
             raise RuntimeError(f"SGLang generation failed: {e}")
 
-    def get_model_info(self) -> Dict:
+    def get_model_info(self) -> dict:
         """Get SGLang model information."""
         try:
             response = self.requests.get(f"{self.base_url}/get_model_info", timeout=5)
             server_info = response.json() if response.status_code == 200 else {}
-        except:
+        except Exception:
             server_info = {}
 
         return {
@@ -139,6 +134,6 @@ class SGLangModel(BaseModel):
             "features": {
                 "radix_attention": True,
                 "structured_outputs": True,
-                "multi_turn_optimized": True
-            }
+                "multi_turn_optimized": True,
+            },
         }

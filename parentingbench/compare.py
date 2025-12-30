@@ -4,17 +4,16 @@ Compare multiple LLMs on ParentingBench scenarios.
 
 import argparse
 import json
-from pathlib import Path
-from typing import List, Dict
-from datetime import datetime
 import time
+from datetime import datetime
+from pathlib import Path
 
-from parentingbench.schemas import Scenario, EvaluationResult
-from parentingbench.models import OpenAIModel, AnthropicModel, LiteLLMModel
-from parentingbench.models.base import BaseModel
-from parentingbench.evaluators import LLMJudge
-from parentingbench.utils import load_scenario, load_all_scenarios, save_results
 from parentingbench.evaluate import generate_parenting_advice
+from parentingbench.evaluators import LLMJudge
+from parentingbench.models import AnthropicModel, LiteLLMModel, OpenAIModel
+from parentingbench.models.base import BaseModel
+from parentingbench.schemas import EvaluationResult, Scenario
+from parentingbench.utils import load_all_scenarios, load_scenario, save_results
 
 
 def get_model(model_spec: str) -> BaseModel:
@@ -50,18 +49,12 @@ def get_model(model_spec: str) -> BaseModel:
     elif provider == "litellm":
         return LiteLLMModel(model_name=model_name)
     else:
-        raise ValueError(
-            f"Unknown provider: {provider}. "
-            f"Supported: openai, anthropic, litellm"
-        )
+        raise ValueError(f"Unknown provider: {provider}. " f"Supported: openai, anthropic, litellm")
 
 
 def evaluate_model_on_scenarios(
-    model: BaseModel,
-    scenarios: List[Scenario],
-    judge: LLMJudge,
-    verbose: bool = False
-) -> List[EvaluationResult]:
+    model: BaseModel, scenarios: list[Scenario], judge: LLMJudge, verbose: bool = False
+) -> list[EvaluationResult]:
     """
     Evaluate a single model on all scenarios.
 
@@ -88,9 +81,7 @@ def evaluate_model_on_scenarios(
 
             # Evaluate response
             result = judge.evaluate(
-                scenario=scenario,
-                model_response=model_response,
-                model_name=model.model_name
+                scenario=scenario, model_response=model_response, model_name=model.model_name
             )
 
             # Add timing info
@@ -99,7 +90,9 @@ def evaluate_model_on_scenarios(
             results.append(result)
 
             if verbose:
-                print(f"✓ Score: {result.overall_score:.2f}/5.0 ({result.safety_classification.value})")
+                print(
+                    f"✓ Score: {result.overall_score:.2f}/5.0 ({result.safety_classification.value})"
+                )
 
         except Exception as e:
             if verbose:
@@ -109,7 +102,7 @@ def evaluate_model_on_scenarios(
     return results
 
 
-def compute_comparison_stats(all_results: Dict[str, List[EvaluationResult]]) -> Dict:
+def compute_comparison_stats(all_results: dict[str, list[EvaluationResult]]) -> dict:
     """
     Compute comparison statistics across models.
 
@@ -119,11 +112,7 @@ def compute_comparison_stats(all_results: Dict[str, List[EvaluationResult]]) -> 
     Returns:
         Comparison statistics
     """
-    comparison = {
-        "models": {},
-        "timestamp": datetime.now().isoformat(),
-        "total_scenarios": 0
-    }
+    comparison = {"models": {}, "timestamp": datetime.now().isoformat(), "total_scenarios": 0}
 
     for model_name, results in all_results.items():
         if not results:
@@ -148,15 +137,11 @@ def compute_comparison_stats(all_results: Dict[str, List[EvaluationResult]]) -> 
                 dimension_scores[score.dimension].append(score.score)
 
         dimension_avgs = {
-            dim: sum(scores) / len(scores)
-            for dim, scores in dimension_scores.items()
+            dim: sum(scores) / len(scores) for dim, scores in dimension_scores.items()
         }
 
         # Generation time stats
-        gen_times = [
-            r.metadata.get("generation_time_seconds", 0)
-            for r in results
-        ]
+        gen_times = [r.metadata.get("generation_time_seconds", 0) for r in results]
         avg_gen_time = sum(gen_times) / len(gen_times) if gen_times else 0
 
         comparison["models"][model_name] = {
@@ -174,26 +159,26 @@ def compute_comparison_stats(all_results: Dict[str, List[EvaluationResult]]) -> 
     return comparison
 
 
-def print_comparison_table(comparison: Dict) -> None:
+def print_comparison_table(comparison: dict) -> None:
     """Print a formatted comparison table."""
 
-    print("\n" + "="*100)
+    print("\n" + "=" * 100)
     print("PARENTINGBENCH MODEL COMPARISON")
-    print("="*100)
+    print("=" * 100)
     print(f"\nTotal Scenarios: {comparison['total_scenarios']}")
     print(f"Evaluated at: {comparison['timestamp']}\n")
 
     # Overall scores table
     print("OVERALL SCORES:")
     print("-" * 100)
-    print(f"{'Model':<40} {'Avg Score':<12} {'Min':<8} {'Max':<8} {'Safe %':<10} {'Avg Time (s)':<12}")
+    print(
+        f"{'Model':<40} {'Avg Score':<12} {'Min':<8} {'Max':<8} {'Safe %':<10} {'Avg Time (s)':<12}"
+    )
     print("-" * 100)
 
     # Sort by average score (descending)
     sorted_models = sorted(
-        comparison["models"].items(),
-        key=lambda x: x[1]["overall_average_score"],
-        reverse=True
+        comparison["models"].items(), key=lambda x: x[1]["overall_average_score"], reverse=True
     )
 
     for model_name, stats in sorted_models:
@@ -234,52 +219,39 @@ def print_comparison_table(comparison: Dict) -> None:
 
         for model_name, score in dim_scores:
             bar_length = int(score * 10)
-            bar = '█' * bar_length + '░' * (50 - bar_length)
+            bar = "█" * bar_length + "░" * (50 - bar_length)
             print(f"  {model_name:<38} {score:.3f}  {bar}")
 
-    print("\n" + "="*100 + "\n")
+    print("\n" + "=" * 100 + "\n")
 
 
 def main():
     """Main comparison function."""
-    parser = argparse.ArgumentParser(
-        description="Compare multiple LLMs on ParentingBench"
-    )
+    parser = argparse.ArgumentParser(description="Compare multiple LLMs on ParentingBench")
     parser.add_argument(
         "--models",
         type=str,
         nargs="+",
         required=True,
-        help="Models to compare (e.g., gpt-4 claude-3-5-sonnet-20241022 litellm:gemini/gemini-2.0-flash-exp)"
+        help="Models to compare (e.g., gpt-4 claude-3-5-sonnet-20241022 litellm:gemini/gemini-2.0-flash-exp)",
     )
     parser.add_argument(
-        "--judge-model",
-        type=str,
-        default="gpt-4",
-        help="Model to use as judge (default: gpt-4)"
+        "--judge-model", type=str, default="gpt-4", help="Model to use as judge (default: gpt-4)"
     )
-    parser.add_argument(
-        "--scenario",
-        type=str,
-        help="Path to a single scenario file to evaluate"
-    )
+    parser.add_argument("--scenario", type=str, help="Path to a single scenario file to evaluate")
     parser.add_argument(
         "--scenarios-dir",
         type=str,
         default="parentingbench/scenarios",
-        help="Directory containing scenarios (default: parentingbench/scenarios)"
+        help="Directory containing scenarios (default: parentingbench/scenarios)",
     )
     parser.add_argument(
         "--output",
         type=str,
         default="results/comparison",
-        help="Output directory for results (default: results/comparison)"
+        help="Output directory for results (default: results/comparison)",
     )
-    parser.add_argument(
-        "--verbose",
-        action="store_true",
-        help="Print detailed progress"
-    )
+    parser.add_argument("--verbose", action="store_true", help="Print detailed progress")
 
     args = parser.parse_args()
 
@@ -313,10 +285,7 @@ def main():
         try:
             model = get_model(model_spec)
             results = evaluate_model_on_scenarios(
-                model=model,
-                scenarios=scenarios,
-                judge=judge,
-                verbose=args.verbose
+                model=model, scenarios=scenarios, judge=judge, verbose=args.verbose
             )
             all_results[model.model_name] = results
 
@@ -325,10 +294,7 @@ def main():
             output_dir.mkdir(parents=True, exist_ok=True)
 
             model_filename = model.model_name.replace("/", "_").replace(":", "_")
-            save_results(
-                results,
-                output_dir / f"{model_filename}.json"
-            )
+            save_results(results, output_dir / f"{model_filename}.json")
 
         except Exception as e:
             print(f"Error evaluating {model_spec}: {e}\n")
@@ -341,7 +307,7 @@ def main():
         # Save comparison
         output_dir = Path(args.output)
         comparison_path = output_dir / "comparison.json"
-        with open(comparison_path, 'w', encoding='utf-8') as f:
+        with open(comparison_path, "w", encoding="utf-8") as f:
             json.dump(comparison, f, indent=2, ensure_ascii=False)
         print(f"\nComparison saved to {comparison_path}")
 

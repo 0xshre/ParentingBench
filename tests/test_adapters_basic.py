@@ -5,11 +5,13 @@ These tests verify the adapter interfaces without requiring actual API calls or 
 """
 
 import pytest
+
 from parentingbench.models.base import BaseModel
 
 
 def test_base_model_interface():
     """Test that BaseModel defines the required interface."""
+
     # BaseModel is abstract, so we create a minimal implementation
     class TestModel(BaseModel):
         def generate(self, prompt, system_prompt=None, temperature=0.7, max_tokens=2000, **kwargs):
@@ -32,16 +34,16 @@ def test_base_model_interface():
 def test_litellm_adapter_exists():
     """Test that LiteLLM adapter module exists and has correct structure."""
     try:
-        from parentingbench.models.litellm_adapter import LiteLLMModel
         from parentingbench.models.base import BaseModel
+        from parentingbench.models.litellm_adapter import LiteLLMModel
 
         # Verify it's a subclass of BaseModel
         assert issubclass(LiteLLMModel, BaseModel)
 
         # Verify required methods exist
-        assert hasattr(LiteLLMModel, 'generate')
-        assert hasattr(LiteLLMModel, 'get_model_info')
-        assert hasattr(LiteLLMModel, '_detect_provider')
+        assert hasattr(LiteLLMModel, "generate")
+        assert hasattr(LiteLLMModel, "get_model_info")
+        assert hasattr(LiteLLMModel, "_detect_provider")
 
         print("✓ LiteLLMModel has correct structure")
 
@@ -52,15 +54,15 @@ def test_litellm_adapter_exists():
 def test_sglang_adapter_exists():
     """Test that SGLang adapter module exists and has correct structure."""
     try:
-        from parentingbench.models.sglang_adapter import SGLangModel
         from parentingbench.models.base import BaseModel
+        from parentingbench.models.sglang_adapter import SGLangModel
 
         # Verify it's a subclass of BaseModel
         assert issubclass(SGLangModel, BaseModel)
 
         # Verify required methods exist
-        assert hasattr(SGLangModel, 'generate')
-        assert hasattr(SGLangModel, 'get_model_info')
+        assert hasattr(SGLangModel, "generate")
+        assert hasattr(SGLangModel, "get_model_info")
 
         print("✓ SGLangModel has correct structure")
 
@@ -72,17 +74,19 @@ def test_all_adapters_importable():
     """Test that all adapters can be imported from models package."""
     try:
         from parentingbench.models import (
-            BaseModel,
-            OpenAIModel,
             AnthropicModel,
+            BaseModel,
             LiteLLMModel,
-            SGLangModel
+            OpenAIModel,
+            SGLangModel,
         )
 
         adapters = [OpenAIModel, AnthropicModel, LiteLLMModel, SGLangModel]
 
         for adapter in adapters:
-            assert issubclass(adapter, BaseModel), f"{adapter.__name__} should inherit from BaseModel"
+            assert issubclass(
+                adapter, BaseModel
+            ), f"{adapter.__name__} should inherit from BaseModel"
 
         print(f"✓ All {len(adapters)} adapters importable and inherit from BaseModel")
 

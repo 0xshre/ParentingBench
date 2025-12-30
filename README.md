@@ -4,6 +4,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/0xshre/ParentingBench/workflows/CI/badge.svg)](https://github.com/0xshre/ParentingBench/actions)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
@@ -41,18 +44,53 @@ ParentingBench evaluates:
 # Install dependencies
 pip install -r requirements.txt
 
+# Or install as a package (recommended)
+pip install -e .
+
 # Run demo (no API keys required)
 python demo_usage.py
 
-# Evaluate a single model
+# Or use the Makefile
+make install
+make demo
+```
+
+### Evaluate a single model
+
+```bash
 python -m parentingbench.evaluate \
   --model gpt-4 \
   --scenario parentingbench/scenarios/school_age/emotional_mental_health_anxiety_school.yaml
 
-# Compare multiple models
+# Or use make
+make evaluate-example
+```
+
+### Compare multiple models
+
+```bash
 python -m parentingbench.compare \
   --models gpt-4 claude-3-5-sonnet-20241022 gemini/gemini-2.0-flash-exp \
   --output results/comparison
+
+# Or use make
+make compare-example
+```
+
+### Development
+
+```bash
+# Install with dev dependencies
+make install-dev
+
+# Run tests
+make test
+
+# Format code
+make format
+
+# Validate scenarios
+make validate-scenarios
 ```
 
 ---
@@ -154,10 +192,21 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ### Adding New Scenarios
 
-1. Create scenario YAML in appropriate directory
-2. Follow the scenario template
+1. Create scenario YAML in appropriate directory (`school_age/` or `teenage/`)
+2. Follow the [scenario template](CONTRIBUTING.md#adding-new-scenarios)
 3. Include ideal response criteria and red flags
-4. Test with `python -m parentingbench.validate_scenario`
+4. Validate with: `make validate-scenarios` or `python scripts/validate_scenarios.py your_scenario.yaml`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+## Documentation
+
+- [Setup Guide](SETUP.md) - Installation and configuration
+- [Contributing](CONTRIBUTING.md) - Guidelines for contributors
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
+- [Examples](examples/) - Sample outputs and usage examples
 
 ---
 
@@ -166,11 +215,11 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 If you use ParentingBench in your research, please cite:
 
 ```bibtex
-@misc{parentingbench2025,
+@software{parentingbench2025,
   title={ParentingBench: Evaluating LLM Parenting Advice Quality},
   author={ParentingBench Contributors},
   year={2025},
-  url={https://github.com/yourusername/parentingbench}
+  url={https://github.com/0xshre/ParentingBench}
 }
 ```
 

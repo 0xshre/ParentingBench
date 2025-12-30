@@ -1,7 +1,6 @@
 """LiteLLM adapter for unified access to 100+ LLM providers."""
 
 import os
-from typing import Optional, Dict
 
 from .base import BaseModel
 
@@ -25,9 +24,9 @@ class LiteLLMModel(BaseModel):
     def __init__(
         self,
         model_name: str,
-        api_key: Optional[str] = None,
-        api_base: Optional[str] = None,
-        **kwargs
+        api_key: str | None = None,
+        api_base: str | None = None,
+        **kwargs,
     ):
         """
         Initialize LiteLLM model.
@@ -43,6 +42,7 @@ class LiteLLMModel(BaseModel):
 
         try:
             import litellm
+
             self.litellm = litellm
 
             # Configure LiteLLM
@@ -60,9 +60,7 @@ class LiteLLMModel(BaseModel):
                 litellm.api_base = api_base
 
         except ImportError:
-            raise ImportError(
-                "litellm package not installed. Install with: pip install litellm"
-            )
+            raise ImportError("litellm package not installed. Install with: pip install litellm")
 
     def _detect_provider(self, model_name: str) -> str:
         """Detect provider from model name."""
@@ -80,10 +78,10 @@ class LiteLLMModel(BaseModel):
     def generate(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None,
+        system_prompt: str | None = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate response using LiteLLM.
@@ -111,7 +109,7 @@ class LiteLLMModel(BaseModel):
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
-                **kwargs
+                **kwargs,
             )
 
             return response.choices[0].message.content
@@ -119,7 +117,7 @@ class LiteLLMModel(BaseModel):
         except Exception as e:
             raise RuntimeError(f"LiteLLM generation failed: {e}")
 
-    def get_model_info(self) -> Dict:
+    def get_model_info(self) -> dict:
         """Get LiteLLM model information."""
         provider = self._detect_provider(self.model_name)
         return {

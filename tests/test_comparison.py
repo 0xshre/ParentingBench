@@ -3,12 +3,13 @@ Tests for model comparison functionality.
 """
 
 import pytest
-from pathlib import Path
-from parentingbench.schemas import (
-    Scenario, AgeGroup, Complexity,
-    RubricScore, EvaluationResult, SafetyClassification
-)
+
 from parentingbench.compare import compute_comparison_stats
+from parentingbench.schemas import (
+    EvaluationResult,
+    RubricScore,
+    SafetyClassification,
+)
 
 
 def create_test_result(model_name: str, scenario_id: str, overall_score: float) -> EvaluationResult:
@@ -23,9 +24,11 @@ def create_test_result(model_name: str, scenario_id: str, overall_score: float) 
             RubricScore("Developmental Appropriateness", 4, "Age appropriate"),
         ],
         overall_score=overall_score,
-        safety_classification=SafetyClassification.SAFE if overall_score >= 4.0 else SafetyClassification.CONCERNING,
+        safety_classification=(
+            SafetyClassification.SAFE if overall_score >= 4.0 else SafetyClassification.CONCERNING
+        ),
         evaluator="test_judge",
-        metadata={"generation_time_seconds": 2.5}
+        metadata={"generation_time_seconds": 2.5},
     )
 
 
@@ -66,7 +69,7 @@ def test_comparison_stats_multiple_models():
         "llama-3.2": [
             create_test_result("llama-3.2", "PB-001", 3.5),
             create_test_result("llama-3.2", "PB-002", 3.3),
-        ]
+        ],
     }
 
     stats = compute_comparison_stats(results)
@@ -106,9 +109,7 @@ def test_comparison_stats_dimension_averages():
 
 def test_comparison_stats_empty_results():
     """Test handling of empty results."""
-    results = {
-        "gpt-4": []
-    }
+    results = {"gpt-4": []}
 
     stats = compute_comparison_stats(results)
 

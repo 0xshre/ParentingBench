@@ -3,14 +3,12 @@ Main evaluation script for ParentingBench.
 """
 
 import argparse
-from pathlib import Path
-from typing import List
 
-from parentingbench.schemas import Scenario, EvaluationResult
-from parentingbench.models import OpenAIModel, AnthropicModel
-from parentingbench.models.base import BaseModel
 from parentingbench.evaluators import LLMJudge
-from parentingbench.utils import load_scenario, load_all_scenarios, save_results, format_results
+from parentingbench.models import AnthropicModel, OpenAIModel
+from parentingbench.models.base import BaseModel
+from parentingbench.schemas import EvaluationResult, Scenario
+from parentingbench.utils import format_results, load_all_scenarios, load_scenario, save_results
 
 
 def get_model(model_name: str, api_key: str = None) -> BaseModel:
@@ -30,10 +28,7 @@ def get_model(model_name: str, api_key: str = None) -> BaseModel:
     elif model_name.startswith("claude"):
         return AnthropicModel(model_name=model_name, api_key=api_key)
     else:
-        raise ValueError(
-            f"Unknown model: {model_name}. "
-            f"Supported: gpt-*, claude-*"
-        )
+        raise ValueError(f"Unknown model: {model_name}. " f"Supported: gpt-*, claude-*")
 
 
 def generate_parenting_advice(model: BaseModel, scenario: Scenario) -> str:
@@ -67,18 +62,12 @@ Be empathetic, balanced, and specific. When appropriate, recommend professional 
 Please provide thoughtful, evidence-based advice."""
 
     return model.generate(
-        prompt=user_prompt,
-        system_prompt=system_prompt,
-        temperature=0.7,
-        max_tokens=2000
+        prompt=user_prompt, system_prompt=system_prompt, temperature=0.7, max_tokens=2000
     )
 
 
 def evaluate_scenario(
-    scenario: Scenario,
-    model: BaseModel,
-    judge: LLMJudge,
-    verbose: bool = False
+    scenario: Scenario, model: BaseModel, judge: LLMJudge, verbose: bool = False
 ) -> EvaluationResult:
     """
     Evaluate a model on a single scenario.
@@ -115,9 +104,7 @@ def evaluate_scenario(
         print("Evaluating response...")
 
     result = judge.evaluate(
-        scenario=scenario,
-        model_response=model_response,
-        model_name=model.model_name
+        scenario=scenario, model_response=model_response, model_name=model.model_name
     )
 
     if verbose:
@@ -130,43 +117,30 @@ def evaluate_scenario(
 
 def main():
     """Main evaluation function."""
-    parser = argparse.ArgumentParser(
-        description="Evaluate LLMs on ParentingBench"
-    )
+    parser = argparse.ArgumentParser(description="Evaluate LLMs on ParentingBench")
     parser.add_argument(
         "--model",
         type=str,
         required=True,
-        help="Model to evaluate (e.g., gpt-4, claude-3-5-sonnet-20241022)"
+        help="Model to evaluate (e.g., gpt-4, claude-3-5-sonnet-20241022)",
     )
     parser.add_argument(
-        "--judge-model",
-        type=str,
-        default="gpt-4",
-        help="Model to use as judge (default: gpt-4)"
+        "--judge-model", type=str, default="gpt-4", help="Model to use as judge (default: gpt-4)"
     )
-    parser.add_argument(
-        "--scenario",
-        type=str,
-        help="Path to a single scenario file to evaluate"
-    )
+    parser.add_argument("--scenario", type=str, help="Path to a single scenario file to evaluate")
     parser.add_argument(
         "--scenarios-dir",
         type=str,
         default="parentingbench/scenarios",
-        help="Directory containing all scenarios (default: parentingbench/scenarios)"
+        help="Directory containing all scenarios (default: parentingbench/scenarios)",
     )
     parser.add_argument(
         "--output",
         type=str,
         default="results/evaluation_results.json",
-        help="Output path for results (default: results/evaluation_results.json)"
+        help="Output path for results (default: results/evaluation_results.json)",
     )
-    parser.add_argument(
-        "--verbose",
-        action="store_true",
-        help="Print detailed progress"
-    )
+    parser.add_argument("--verbose", action="store_true", help="Print detailed progress")
 
     args = parser.parse_args()
 
@@ -193,16 +167,13 @@ def main():
     # Evaluate
     print(f"\nEvaluating {args.model} on {len(scenarios)} scenario(s)...\n")
 
-    results: List[EvaluationResult] = []
+    results: list[EvaluationResult] = []
     for i, scenario in enumerate(scenarios, 1):
         print(f"[{i}/{len(scenarios)}] Evaluating {scenario.scenario_id}...")
 
         try:
             result = evaluate_scenario(
-                scenario=scenario,
-                model=model,
-                judge=judge,
-                verbose=args.verbose
+                scenario=scenario, model=model, judge=judge, verbose=args.verbose
             )
             results.append(result)
         except Exception as e:
