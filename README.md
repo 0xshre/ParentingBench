@@ -94,14 +94,19 @@ parentingbench/
 │   ├── school_age/        # Ages 7-12
 │   └── teenage/           # Ages 13-18
 ├── evaluators/            # Scoring logic
-│   ├── llm_judge.py      # LLM-as-judge evaluator
-│   └── human.py          # Human annotation interface
+│   └── llm_judge.py      # LLM-as-judge evaluator
 ├── models/                # LLM provider adapters
-│   ├── openai.py
-│   ├── anthropic.py
-│   └── huggingface.py
+│   ├── base.py           # Abstract base class
+│   ├── openai_adapter.py
+│   ├── anthropic_adapter.py
+│   ├── litellm_adapter.py   # 100+ providers via LiteLLM
+│   └── sglang_adapter.py    # High-performance local inference
 ├── utils/                 # Helper utilities
-└── evaluate.py           # Main evaluation script
+│   ├── scenario_loader.py
+│   └── results_writer.py
+├── schemas.py            # Data structures
+├── evaluate.py           # Single model evaluation
+└── compare.py            # Multi-model comparison
 ```
 
 ---
