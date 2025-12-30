@@ -2,9 +2,11 @@
 Test the evaluation harness with a sample scenario.
 """
 
-import pytest
 from pathlib import Path
-from parentingbench.schemas import Scenario, AgeGroup, Complexity
+
+import pytest
+
+from parentingbench.schemas import AgeGroup, Complexity, Scenario
 from parentingbench.utils import load_scenario
 
 

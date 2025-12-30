@@ -2,11 +2,11 @@
 
 import json
 from pathlib import Path
-from typing import List
+
 from ..schemas import EvaluationResult
 
 
-def save_results(results: List[EvaluationResult], output_path: str | Path) -> None:
+def save_results(results: list[EvaluationResult], output_path: str | Path) -> None:
     """
     Save evaluation results to a JSON file.
 
@@ -41,7 +41,7 @@ def save_results(results: List[EvaluationResult], output_path: str | Path) -> No
     print(f"Results saved to {output_path}")
 
 
-def format_results(results: List[EvaluationResult]) -> str:
+def format_results(results: list[EvaluationResult]) -> str:
     """
     Format results as a human-readable summary.
 

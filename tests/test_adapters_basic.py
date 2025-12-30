@@ -5,6 +5,7 @@ These tests verify the adapter interfaces without requiring actual API calls or 
 """
 
 import pytest
+
 from parentingbench.models.base import BaseModel
 
 
@@ -33,8 +34,8 @@ def test_base_model_interface():
 def test_litellm_adapter_exists():
     """Test that LiteLLM adapter module exists and has correct structure."""
     try:
-        from parentingbench.models.litellm_adapter import LiteLLMModel
         from parentingbench.models.base import BaseModel
+        from parentingbench.models.litellm_adapter import LiteLLMModel
 
         # Verify it's a subclass of BaseModel
         assert issubclass(LiteLLMModel, BaseModel)
@@ -53,8 +54,8 @@ def test_litellm_adapter_exists():
 def test_sglang_adapter_exists():
     """Test that SGLang adapter module exists and has correct structure."""
     try:
-        from parentingbench.models.sglang_adapter import SGLangModel
         from parentingbench.models.base import BaseModel
+        from parentingbench.models.sglang_adapter import SGLangModel
 
         # Verify it's a subclass of BaseModel
         assert issubclass(SGLangModel, BaseModel)
@@ -73,10 +74,10 @@ def test_all_adapters_importable():
     """Test that all adapters can be imported from models package."""
     try:
         from parentingbench.models import (
-            BaseModel,
-            OpenAIModel,
             AnthropicModel,
+            BaseModel,
             LiteLLMModel,
+            OpenAIModel,
             SGLangModel,
         )
 

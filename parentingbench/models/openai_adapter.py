@@ -1,7 +1,6 @@
 """OpenAI API adapter."""
 
 import os
-from typing import Optional, Dict
 
 from .base import BaseModel
 
@@ -9,7 +8,7 @@ from .base import BaseModel
 class OpenAIModel(BaseModel):
     """Adapter for OpenAI models."""
 
-    def __init__(self, model_name: str = "gpt-4", api_key: Optional[str] = None, **kwargs):
+    def __init__(self, model_name: str = "gpt-4", api_key: str | None = None, **kwargs):
         """
         Initialize OpenAI model.
 
@@ -36,7 +35,7 @@ class OpenAIModel(BaseModel):
     def generate(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None,
+        system_prompt: str | None = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
         **kwargs,
@@ -71,6 +70,6 @@ class OpenAIModel(BaseModel):
 
         return response.choices[0].message.content
 
-    def get_model_info(self) -> Dict:
+    def get_model_info(self) -> dict:
         """Get OpenAI model information."""
         return {"provider": "openai", "model_name": self.model_name, "api_version": "v1"}

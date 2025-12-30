@@ -1,13 +1,12 @@
 """Base class for LLM providers."""
 
 from abc import ABC, abstractmethod
-from typing import Optional, Dict
 
 
 class BaseModel(ABC):
     """Abstract base class for LLM providers."""
 
-    def __init__(self, model_name: str, api_key: Optional[str] = None, **kwargs):
+    def __init__(self, model_name: str, api_key: str | None = None, **kwargs):
         """
         Initialize the model.
 
@@ -24,7 +23,7 @@ class BaseModel(ABC):
     def generate(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None,
+        system_prompt: str | None = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
         **kwargs,
@@ -45,7 +44,7 @@ class BaseModel(ABC):
         pass
 
     @abstractmethod
-    def get_model_info(self) -> Dict:
+    def get_model_info(self) -> dict:
         """
         Get information about the model.
 

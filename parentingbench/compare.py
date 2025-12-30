@@ -4,17 +4,16 @@ Compare multiple LLMs on ParentingBench scenarios.
 
 import argparse
 import json
-from pathlib import Path
-from typing import List, Dict
-from datetime import datetime
 import time
+from datetime import datetime
+from pathlib import Path
 
-from parentingbench.schemas import Scenario, EvaluationResult
-from parentingbench.models import OpenAIModel, AnthropicModel, LiteLLMModel
-from parentingbench.models.base import BaseModel
-from parentingbench.evaluators import LLMJudge
-from parentingbench.utils import load_scenario, load_all_scenarios, save_results
 from parentingbench.evaluate import generate_parenting_advice
+from parentingbench.evaluators import LLMJudge
+from parentingbench.models import AnthropicModel, LiteLLMModel, OpenAIModel
+from parentingbench.models.base import BaseModel
+from parentingbench.schemas import EvaluationResult, Scenario
+from parentingbench.utils import load_all_scenarios, load_scenario, save_results
 
 
 def get_model(model_spec: str) -> BaseModel:
@@ -54,8 +53,8 @@ def get_model(model_spec: str) -> BaseModel:
 
 
 def evaluate_model_on_scenarios(
-    model: BaseModel, scenarios: List[Scenario], judge: LLMJudge, verbose: bool = False
-) -> List[EvaluationResult]:
+    model: BaseModel, scenarios: list[Scenario], judge: LLMJudge, verbose: bool = False
+) -> list[EvaluationResult]:
     """
     Evaluate a single model on all scenarios.
 
@@ -103,7 +102,7 @@ def evaluate_model_on_scenarios(
     return results
 
 
-def compute_comparison_stats(all_results: Dict[str, List[EvaluationResult]]) -> Dict:
+def compute_comparison_stats(all_results: dict[str, list[EvaluationResult]]) -> dict:
     """
     Compute comparison statistics across models.
 
@@ -160,7 +159,7 @@ def compute_comparison_stats(all_results: Dict[str, List[EvaluationResult]]) -> 
     return comparison
 
 
-def print_comparison_table(comparison: Dict) -> None:
+def print_comparison_table(comparison: dict) -> None:
     """Print a formatted comparison table."""
 
     print("\n" + "=" * 100)

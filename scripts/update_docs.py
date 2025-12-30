@@ -6,12 +6,10 @@ This script generates the file tree for the README based on the actual codebase.
 Run manually or as part of pre-commit/CI.
 """
 
-import os
 from pathlib import Path
-from typing import List, Set
 
 
-def should_ignore(path: Path, ignore_patterns: Set[str]) -> bool:
+def should_ignore(path: Path, ignore_patterns: set[str]) -> bool:
     """Check if path should be ignored."""
     parts = path.parts
     for pattern in ignore_patterns:
@@ -24,10 +22,10 @@ def generate_tree(
     root_dir: Path,
     prefix: str = "",
     is_last: bool = True,
-    ignore_patterns: Set[str] = None,
+    ignore_patterns: set[str] = None,
     max_depth: int = 3,
     current_depth: int = 0,
-) -> List[str]:
+) -> list[str]:
     """
     Generate a tree structure of the directory.
 

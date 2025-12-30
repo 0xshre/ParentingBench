@@ -3,16 +3,13 @@ Tests for model comparison functionality.
 """
 
 import pytest
-from pathlib import Path
+
+from parentingbench.compare import compute_comparison_stats
 from parentingbench.schemas import (
-    Scenario,
-    AgeGroup,
-    Complexity,
-    RubricScore,
     EvaluationResult,
+    RubricScore,
     SafetyClassification,
 )
-from parentingbench.compare import compute_comparison_stats
 
 
 def create_test_result(model_name: str, scenario_id: str, overall_score: float) -> EvaluationResult:

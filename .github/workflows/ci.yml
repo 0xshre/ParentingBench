@@ -55,12 +55,10 @@ jobs:
         pip install ruff black
     
     - name: Check code formatting with black
-      run: black --check parentingbench tests
-      continue-on-error: true
+      run: black --check parentingbench tests scripts --line-length 100
     
     - name: Lint with ruff
-      run: ruff check parentingbench tests
-      continue-on-error: true
+      run: ruff check parentingbench tests scripts
 
   demo:
     runs-on: ubuntu-latest

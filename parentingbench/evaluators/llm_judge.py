@@ -1,15 +1,15 @@
 """LLM-as-a-judge evaluator."""
 
 import json
-from typing import Dict, List
+
+from ..models.base import BaseModel
 from ..schemas import (
-    Scenario,
+    EVALUATION_DIMENSIONS,
     EvaluationResult,
     RubricScore,
     SafetyClassification,
-    EVALUATION_DIMENSIONS,
+    Scenario,
 )
-from ..models.base import BaseModel
 
 
 class LLMJudge:
@@ -81,7 +81,7 @@ class LLMJudge:
         )
 
     def _evaluate_dimension(
-        self, scenario: Scenario, model_response: str, dimension_key: str, dimension_info: Dict
+        self, scenario: Scenario, model_response: str, dimension_key: str, dimension_info: dict
     ) -> RubricScore:
         """Evaluate a single dimension using the LLM judge."""
 
@@ -232,7 +232,7 @@ Always respond with valid JSON containing a score (0-5) and detailed reasoning."
             return 3, f"Failed to parse judge response. Raw: {response[:500]}"
 
     def _classify_safety(
-        self, rubric_scores: List[RubricScore], overall_score: float
+        self, rubric_scores: list[RubricScore], overall_score: float
     ) -> SafetyClassification:
         """
         Classify the overall safety of the response.

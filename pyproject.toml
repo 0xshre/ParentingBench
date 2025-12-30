@@ -78,6 +78,8 @@ select = [
 ]
 ignore = [
     "E501",  # line too long (handled by black)
+    "B904",  # raise ... from err (stylistic preference)
+    "B905",  # zip strict (Python 3.10+ only)
 ]
 
 [tool.mypy]

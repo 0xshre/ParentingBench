@@ -1,7 +1,6 @@
 """LiteLLM adapter for unified access to 100+ LLM providers."""
 
 import os
-from typing import Optional, Dict
 
 from .base import BaseModel
 
@@ -25,8 +24,8 @@ class LiteLLMModel(BaseModel):
     def __init__(
         self,
         model_name: str,
-        api_key: Optional[str] = None,
-        api_base: Optional[str] = None,
+        api_key: str | None = None,
+        api_base: str | None = None,
         **kwargs,
     ):
         """
@@ -79,7 +78,7 @@ class LiteLLMModel(BaseModel):
     def generate(
         self,
         prompt: str,
-        system_prompt: Optional[str] = None,
+        system_prompt: str | None = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
         **kwargs,
@@ -118,7 +117,7 @@ class LiteLLMModel(BaseModel):
         except Exception as e:
             raise RuntimeError(f"LiteLLM generation failed: {e}")
 
-    def get_model_info(self) -> Dict:
+    def get_model_info(self) -> dict:
         """Get LiteLLM model information."""
         provider = self._detect_provider(self.model_name)
         return {

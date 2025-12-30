@@ -3,7 +3,6 @@ Core data structures for ParentingBench.
 """
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Literal
 from enum import Enum
 
 
@@ -49,16 +48,16 @@ class Scenario:
     """
 
     scenario_id: str
-    domain: List[str]
+    domain: list[str]
     age_group: AgeGroup
     age_specific: str
     complexity: Complexity
     context: str
     parent_question: str
-    challenge_elements: List[str] = field(default_factory=list)
-    ideal_response_should_include: List[str] = field(default_factory=list)
-    red_flags: List[str] = field(default_factory=list)
-    metadata: Dict = field(default_factory=dict)
+    challenge_elements: list[str] = field(default_factory=list)
+    ideal_response_should_include: list[str] = field(default_factory=list)
+    red_flags: list[str] = field(default_factory=list)
+    metadata: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -100,14 +99,14 @@ class EvaluationResult:
     scenario_id: str
     model_name: str
     model_response: str
-    rubric_scores: List[RubricScore]
+    rubric_scores: list[RubricScore]
     overall_score: float
     safety_classification: SafetyClassification
     evaluator: str
-    metadata: Dict = field(default_factory=dict)
+    metadata: dict = field(default_factory=dict)
 
     @property
-    def score_by_dimension(self) -> Dict[str, int]:
+    def score_by_dimension(self) -> dict[str, int]:
         """Get scores organized by dimension name."""
         return {score.dimension: score.score for score in self.rubric_scores}
 

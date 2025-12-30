@@ -3,14 +3,12 @@ Main evaluation script for ParentingBench.
 """
 
 import argparse
-from pathlib import Path
-from typing import List
 
-from parentingbench.schemas import Scenario, EvaluationResult
-from parentingbench.models import OpenAIModel, AnthropicModel
-from parentingbench.models.base import BaseModel
 from parentingbench.evaluators import LLMJudge
-from parentingbench.utils import load_scenario, load_all_scenarios, save_results, format_results
+from parentingbench.models import AnthropicModel, OpenAIModel
+from parentingbench.models.base import BaseModel
+from parentingbench.schemas import EvaluationResult, Scenario
+from parentingbench.utils import format_results, load_all_scenarios, load_scenario, save_results
 
 
 def get_model(model_name: str, api_key: str = None) -> BaseModel:
@@ -169,7 +167,7 @@ def main():
     # Evaluate
     print(f"\nEvaluating {args.model} on {len(scenarios)} scenario(s)...\n")
 
-    results: List[EvaluationResult] = []
+    results: list[EvaluationResult] = []
     for i, scenario in enumerate(scenarios, 1):
         print(f"[{i}/{len(scenarios)}] Evaluating {scenario.scenario_id}...")
 

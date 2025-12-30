@@ -11,7 +11,7 @@ This script checks that scenario files:
 import argparse
 import sys
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any
 
 import yaml
 
@@ -19,7 +19,7 @@ from parentingbench.schemas import AgeGroup, Complexity
 from parentingbench.utils import load_scenario
 
 
-def validate_scenario_structure(scenario_data: Dict[str, Any], file_path: str) -> List[str]:
+def validate_scenario_structure(scenario_data: dict[str, Any], file_path: str) -> list[str]:
     """
     Validate a scenario dictionary structure.
 
@@ -135,7 +135,7 @@ def validate_scenario_file(file_path: Path) -> bool:
             scenario_data = yaml.safe_load(f)
 
         if scenario_data is None:
-            print(f"  ❌ ERROR: File is empty or invalid YAML")
+            print("  ❌ ERROR: File is empty or invalid YAML")
             return False
 
         # Validate structure
