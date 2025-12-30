@@ -29,6 +29,7 @@ ParentingBench evaluates:
 - **Real-world Scenarios**: Authentic parenting dilemmas across 9 domains
 - **Age-specific**: Separate evaluations for school-age (7-12) and teenage (13-18)
 - **Flexible Evaluation**: LLM-as-judge OR human expert annotation
+- **Multi-Judge System**: Use multiple LLMs as a jury panel with consensus methods (weighted average, majority, median)
 - **Multi-provider Support**: OpenAI, Anthropic, Google Gemini, Ollama, HuggingFace, and 100+ more via LiteLLM
 - **High-Performance Inference**: SGLang support for local models (5x faster than vLLM)
 - **Model Comparison**: Built-in tools to compare multiple LLMs side-by-side
@@ -53,6 +54,12 @@ python -m parentingbench.evaluate \
 python -m parentingbench.compare \
   --models gpt-4 claude-3-5-sonnet-20241022 gemini/gemini-2.0-flash-exp \
   --output results/comparison
+
+# Use multi-judge evaluation (jury of LLMs)
+python -m parentingbench.evaluate \
+  --model gpt-4 \
+  --judges gpt-4 claude-3-5-sonnet-20241022 litellm:gemini/gemini-pro \
+  --consensus-method weighted_average
 ```
 
 ---
@@ -89,9 +96,11 @@ Each response is scored 0-5 on six dimensions:
 ## Project Structure
 
 ```
-aadu-huli/
+parentingbench/
 ├── evaluators            # Scoring logic
-│   └── llm_judge.py      # LLM-as-judge evaluator
+│   ├── base.py           # Abstract base class
+│   ├── llm_judge.py      # Single LLM-as-judge evaluator
+│   └── multi_judge.py    # Multi-judge jury system
 ├── models                # LLM provider adapters
 │   ├── anthropic_adapter.py
 │   ├── base.py           # Abstract base class
@@ -170,7 +179,7 @@ If you use ParentingBench in your research, please cite:
   title={ParentingBench: Evaluating LLM Parenting Advice Quality},
   author={ParentingBench Contributors},
   year={2025},
-  url={https://github.com/yourusername/parentingbench}
+  url={https://github.com/0xshre/ParentingBench}
 }
 ```
 
