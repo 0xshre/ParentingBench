@@ -10,9 +10,10 @@ from ..schemas import (
     SafetyClassification,
     Scenario,
 )
+from .base import BaseEvaluator
 
 
-class LLMJudge:
+class LLMJudge(BaseEvaluator):
     """
     Uses an LLM to evaluate parenting advice responses.
 
@@ -29,6 +30,15 @@ class LLMJudge:
         """
         self.judge_model = judge_model
         self.verbose = verbose
+
+    def get_evaluator_info(self) -> dict:
+        """Return metadata about this evaluator configuration."""
+        return {
+            "type": "llm_judge",
+            "judge_model": self.judge_model.model_name,
+            "num_judges": 1,
+            "consensus_method": None,
+        }
 
     def evaluate(
         self, scenario: Scenario, model_response: str, model_name: str

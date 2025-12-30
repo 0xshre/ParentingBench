@@ -81,6 +81,44 @@ class RubricScore:
 
 
 @dataclass
+class JudgeVote:
+    """
+    Individual judge's vote for a dimension.
+
+    Attributes:
+        judge_model: Name of the judge model
+        score: Score from 0-5
+        reasoning: Explanation for the score
+    """
+    judge_model: str
+    score: int  # 0-5
+    reasoning: str
+
+    def __post_init__(self):
+        if not 0 <= self.score <= 5:
+            raise ValueError(f"Score must be between 0 and 5, got {self.score}")
+
+
+@dataclass
+class ConsensusRubricScore:
+    """
+    Aggregated score from multiple judges for a dimension.
+
+    Attributes:
+        dimension: Name of the evaluation dimension
+        final_score: Consensus score (can be fractional for weighted average)
+        votes: Individual judge votes
+        agreement: Inter-judge agreement score (0.0-1.0)
+        score_std: Standard deviation of votes
+    """
+    dimension: str
+    final_score: float
+    votes: list["JudgeVote"]
+    agreement: float
+    score_std: float
+
+
+@dataclass
 class EvaluationResult:
     """
     Complete evaluation result for a scenario.
@@ -109,6 +147,45 @@ class EvaluationResult:
     def score_by_dimension(self) -> dict[str, int]:
         """Get scores organized by dimension name."""
         return {score.dimension: score.score for score in self.rubric_scores}
+
+
+@dataclass
+class MultiJudgeEvaluationResult:
+    """
+    Evaluation result from a multi-judge panel.
+
+    Attributes:
+        scenario_id: ID of the evaluated scenario
+        model_name: Name of the model that generated the response
+        model_response: The actual response from the model
+        consensus_scores: Consensus scores for each dimension
+        overall_score: Weighted average consensus score
+        overall_std: Standard deviation of overall scores across judges
+        safety_classification: Overall safety assessment
+        judge_models: List of judge models used
+        consensus_method: Method used for consensus (weighted_average, majority, median)
+        metadata: Additional evaluation metadata
+    """
+    scenario_id: str
+    model_name: str
+    model_response: str
+    consensus_scores: list[ConsensusRubricScore]
+    overall_score: float
+    overall_std: float
+    safety_classification: SafetyClassification
+    judge_models: list[str]
+    consensus_method: str
+    metadata: dict = field(default_factory=dict)
+
+    @property
+    def score_by_dimension(self) -> dict[str, float]:
+        """Get consensus scores organized by dimension name."""
+        return {score.dimension: score.final_score for score in self.consensus_scores}
+
+    @property
+    def agreement_by_dimension(self) -> dict[str, float]:
+        """Get agreement scores organized by dimension name."""
+        return {score.dimension: score.agreement for score in self.consensus_scores}
 
 
 # Evaluation dimensions and their descriptions

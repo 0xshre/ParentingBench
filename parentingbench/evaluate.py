@@ -4,10 +4,10 @@ Main evaluation script for ParentingBench.
 
 import argparse
 
-from parentingbench.evaluators import LLMJudge
-from parentingbench.models import AnthropicModel, OpenAIModel
+from parentingbench.evaluators import LLMJudge, MultiJudge
+from parentingbench.models import AnthropicModel, LiteLLMModel, OpenAIModel
 from parentingbench.models.base import BaseModel
-from parentingbench.schemas import EvaluationResult, Scenario
+from parentingbench.schemas import EvaluationResult, MultiJudgeEvaluationResult, Scenario
 from parentingbench.utils import format_results, load_all_scenarios, load_scenario, save_results
 
 
@@ -16,19 +16,24 @@ def get_model(model_name: str, api_key: str = None) -> BaseModel:
     Get the appropriate model adapter.
 
     Args:
-        model_name: Name of the model (e.g., "gpt-4", "claude-3-5-sonnet-20241022")
+        model_name: Name of the model (e.g., "gpt-4", "claude-3-5-sonnet-20241022", "litellm:gemini/gemini-pro")
         api_key: Optional API key
 
     Returns:
         Model adapter instance
     """
+    # Check for LiteLLM prefix first (e.g., "litellm:gemini/gemini-pro")
+    if model_name.startswith("litellm:"):
+        litellm_model = model_name[8:]  # Strip "litellm:" prefix
+        return LiteLLMModel(model_name=litellm_model)
+
     # Determine provider from model name
     if model_name.startswith("gpt") or model_name.startswith("o1"):
         return OpenAIModel(model_name=model_name, api_key=api_key)
     elif model_name.startswith("claude"):
         return AnthropicModel(model_name=model_name, api_key=api_key)
     else:
-        raise ValueError(f"Unknown model: {model_name}. " f"Supported: gpt-*, claude-*")
+        raise ValueError(f"Unknown model: {model_name}. " f"Supported: gpt-*, claude-*, litellm:*")
 
 
 def generate_parenting_advice(model: BaseModel, scenario: Scenario) -> str:
@@ -67,8 +72,8 @@ Please provide thoughtful, evidence-based advice."""
 
 
 def evaluate_scenario(
-    scenario: Scenario, model: BaseModel, judge: LLMJudge, verbose: bool = False
-) -> EvaluationResult:
+    scenario: Scenario, model: BaseModel, judge: LLMJudge | MultiJudge, verbose: bool = False
+) -> EvaluationResult | MultiJudgeEvaluationResult:
     """
     Evaluate a model on a single scenario.
 
@@ -125,7 +130,21 @@ def main():
         help="Model to evaluate (e.g., gpt-4, claude-3-5-sonnet-20241022)",
     )
     parser.add_argument(
-        "--judge-model", type=str, default="gpt-4", help="Model to use as judge (default: gpt-4)"
+        "--judge-model",
+        type=str,
+        default="gpt-4",
+        help="Model to use as single judge (default: gpt-4)",
+    )
+    parser.add_argument(
+        "--judges",
+        nargs="+",
+        help="Multiple judge models for multi-judge evaluation (e.g., --judges gpt-4 claude-3-5-sonnet-20241022 litellm:gemini/gemini-pro)",
+    )
+    parser.add_argument(
+        "--consensus-method",
+        choices=["weighted_average", "majority", "median"],
+        default="weighted_average",
+        help="Consensus method for multi-judge (default: weighted_average)",
     )
     parser.add_argument("--scenario", type=str, help="Path to a single scenario file to evaluate")
     parser.add_argument(
@@ -148,9 +167,20 @@ def main():
     print(f"Initializing model: {args.model}")
     model = get_model(args.model)
 
-    print(f"Initializing judge: {args.judge_model}")
-    judge_model = get_model(args.judge_model)
-    judge = LLMJudge(judge_model=judge_model, verbose=args.verbose)
+    # Initialize judge(s)
+    if args.judges:
+        # Multi-judge mode
+        print(f"Initializing multi-judge panel: {args.judges}")
+        print(f"Consensus method: {args.consensus_method}")
+        judge_models = [get_model(j) for j in args.judges]
+        judge = MultiJudge(
+            judge_models=judge_models, consensus_method=args.consensus_method, verbose=args.verbose
+        )
+    else:
+        # Single judge mode (backwards compatible)
+        print(f"Initializing judge: {args.judge_model}")
+        judge_model = get_model(args.judge_model)
+        judge = LLMJudge(judge_model=judge_model, verbose=args.verbose)
 
     # Load scenarios
     if args.scenario:

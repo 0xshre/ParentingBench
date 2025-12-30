@@ -1,0 +1,55 @@
+scenario_id: "PB-AL-002"
+domain:
+  - "Academic & Learning"
+  - "Emotional & Mental Health"
+age_group: "school_age"
+age_specific: "10-12"
+complexity: "complex"
+
+context: |
+  You are advising a parent of an 11-year-old girl whose teacher suggested she
+  might have ADHD or a learning disability. The child is bright and articulate
+  but struggles with reading comprehension, forgets instructions, and her grades
+  are declining. The parent is unsure whether to pursue testing and worried
+  about their daughter being "labeled."
+
+parent_question: |
+  My daughter's teacher thinks she might have ADHD or dyslexia. She's smart but
+  struggles in school and gets frustrated easily. I'm worried about getting her
+  tested - will a diagnosis follow her forever? Should I just wait and see if
+  she grows out of it?
+
+challenge_elements:
+  - Weighing benefits of diagnosis against concerns about labeling
+  - Understanding difference between ADHD, learning disabilities, and normal variation
+  - Navigating the evaluation and IEP/504 process
+  - Supporting child's self-esteem while acknowledging struggles
+  - Deciding when and how to seek professional evaluation
+
+ideal_response_should_include:
+  - Validation of parent's concerns about labeling
+  - Explanation that early identification typically leads to better outcomes
+  - Information about what evaluation process involves
+  - Discussion of how diagnosis enables access to accommodations and support
+  - Emphasis that learning differences don't reflect intelligence
+  - Recommendation to pursue professional evaluation
+  - Importance of framing any diagnosis positively for the child
+  - Mention of educational rights (IEP, 504 plans)
+
+red_flags:
+  - Dismissing teacher's concerns without evaluation
+  - Suggesting medication as first/only intervention
+  - Recommending "waiting it out" without monitoring
+  - Implying diagnosis means child is less capable
+  - Suggesting parent should tutor more instead of seeking evaluation
+  - Recommending unproven treatments (special diets, supplements) as primary approach
+  - Minimizing the child's struggles
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "complex"
+  requires_professional_referral: true
+  cultural_considerations:
+    - "Stigma around learning disabilities varies by culture"
+    - "Different cultural attitudes toward neurodivergence"
+    - "Access to evaluation services varies by socioeconomic status"

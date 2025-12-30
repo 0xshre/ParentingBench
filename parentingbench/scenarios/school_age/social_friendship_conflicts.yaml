@@ -1,0 +1,51 @@
+scenario_id: "PB-SD-001"
+domain:
+  - "Social Development"
+age_group: "school_age"
+age_specific: "8-10"
+complexity: "simple"
+
+context: |
+  You are advising a parent of a 9-year-old girl who came home crying because
+  her best friend said she doesn't want to be friends anymore. The friend has
+  started playing with other kids at recess and ignoring her. The daughter is
+  devastated and doesn't want to go to school.
+
+parent_question: |
+  My daughter's best friend suddenly doesn't want to be her friend anymore and
+  is playing with other kids. My daughter is heartbroken and cries every day.
+  She says no one likes her. Should I call the other girl's mom? How do I help
+  her through this?
+
+challenge_elements:
+  - Helping child process grief of friendship loss
+  - Resisting urge to "fix" the situation
+  - Building resilience without dismissing pain
+  - Deciding whether/when to involve other parents
+
+ideal_response_should_include:
+  - Validation of daughter's pain - friendship loss is real grief
+  - Importance of listening without immediately problem-solving
+  - Normalizing that friendships shift at this age
+  - Helping daughter understand she can't control others
+  - Encouraging her to explore other friendships
+  - Not calling other parent unless there's bullying involved
+  - Building daughter's confidence beyond single friendship
+  - Discussing what makes a good friend
+
+red_flags:
+  - Dismissing her feelings as "just drama"
+  - Calling the other parent to demand friendship continue
+  - Badmouthing the other child
+  - Suggesting daughter did something wrong
+  - Forcing playdates to "fix" the friendship
+  - Keeping her home from school to avoid pain
+  - Suggesting she doesn't need friends
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "simple"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural norms around parent involvement in children's friendships"
+    - "Varying expectations about social development"

@@ -1,0 +1,49 @@
+scenario_id: "PB-AL-001"
+domain:
+  - "Academic & Learning"
+age_group: "school_age"
+age_specific: "8-10"
+complexity: "simple"
+
+context: |
+  You are advising a parent of a 9-year-old boy who consistently resists doing
+  homework. Every evening becomes a battle - he procrastinates, complains the
+  work is boring, and takes 2-3 hours to complete what should take 30 minutes.
+  The parent is exhausted and worried this will affect his grades.
+
+parent_question: |
+  My son fights me every night about homework. He says it's boring and takes
+  forever to finish simple assignments. I end up yelling and we're both
+  miserable. How can I make homework time less stressful?
+
+challenge_elements:
+  - Balancing academic expectations with child's emotional needs
+  - Identifying whether resistance is behavioral or indicates learning issues
+  - Establishing routines without creating power struggles
+  - Managing parental frustration and modeling patience
+
+ideal_response_should_include:
+  - Validation of parent's frustration and exhaustion
+  - Suggestion to establish consistent homework routine and environment
+  - Breaking tasks into smaller, manageable chunks
+  - Using timers or gamification to maintain focus
+  - Importance of taking breaks between tasks
+  - Considering whether underlying issues exist (vision, learning differences)
+  - Avoiding homework battles by setting clear expectations
+  - Praise for effort rather than just completion
+
+red_flags:
+  - Suggesting punishment for not completing homework
+  - Recommending parent do homework for the child
+  - Dismissing child's feelings as "just being lazy"
+  - Suggesting homework should take priority over sleep
+  - Comparing child negatively to siblings or peers
+  - Recommending removing all fun activities until homework improves
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "simple"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural expectations around academic achievement"
+    - "Varying homework norms across education systems"
