@@ -29,7 +29,9 @@ ParentingBench evaluates:
 - **Real-world Scenarios**: Authentic parenting dilemmas across 9 domains
 - **Age-specific**: Separate evaluations for school-age (7-12) and teenage (13-18)
 - **Flexible Evaluation**: LLM-as-judge OR human expert annotation
-- **Multi-provider Support**: OpenAI, Anthropic, HuggingFace, local models
+- **Multi-provider Support**: OpenAI, Anthropic, Google Gemini, Ollama, HuggingFace, and 100+ more via LiteLLM
+- **High-Performance Inference**: SGLang support for local models (5x faster than vLLM)
+- **Model Comparison**: Built-in tools to compare multiple LLMs side-by-side
 
 ---
 
@@ -39,16 +41,18 @@ ParentingBench evaluates:
 # Install dependencies
 pip install -r requirements.txt
 
-# Run evaluation on a sample scenario
+# Run demo (no API keys required)
+python demo_usage.py
+
+# Evaluate a single model
 python -m parentingbench.evaluate \
   --model gpt-4 \
-  --scenario scenarios/school_age/emotional_mental_health/anxiety_about_school.yaml
+  --scenario parentingbench/scenarios/school_age/emotional_mental_health_anxiety_school.yaml
 
-# Run full benchmark
-python -m parentingbench.evaluate \
-  --model claude-3-5-sonnet-20241022 \
-  --scenarios all \
-  --output results/claude-3-5-sonnet.json
+# Compare multiple models
+python -m parentingbench.compare \
+  --models gpt-4 claude-3-5-sonnet-20241022 gemini/gemini-2.0-flash-exp \
+  --output results/comparison
 ```
 
 ---
