@@ -26,7 +26,7 @@ class SGLangModel(BaseModel):
         api_key: Optional[str] = None,
         host: str = "http://localhost",
         port: int = 30000,
-        **kwargs
+        **kwargs,
     ):
         """
         Initialize SGLang model.
@@ -53,11 +53,10 @@ class SGLangModel(BaseModel):
 
         try:
             import requests
+
             self.requests = requests
         except ImportError:
-            raise ImportError(
-                "requests package not installed. Install with: pip install requests"
-            )
+            raise ImportError("requests package not installed. Install with: pip install requests")
 
         # Check if server is running
         try:
@@ -76,7 +75,7 @@ class SGLangModel(BaseModel):
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate response using SGLang server.
@@ -104,14 +103,12 @@ class SGLangModel(BaseModel):
             "temperature": temperature,
             "max_tokens": max_tokens,
             "stream": False,
-            **kwargs
+            **kwargs,
         }
 
         try:
             response = self.requests.post(
-                f"{self.base_url}/v1/chat/completions",
-                json=payload,
-                timeout=120
+                f"{self.base_url}/v1/chat/completions", json=payload, timeout=120
             )
             response.raise_for_status()
 
@@ -139,6 +136,6 @@ class SGLangModel(BaseModel):
             "features": {
                 "radix_attention": True,
                 "structured_outputs": True,
-                "multi_turn_optimized": True
-            }
+                "multi_turn_optimized": True,
+            },
         }

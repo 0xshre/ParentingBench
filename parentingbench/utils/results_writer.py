@@ -26,20 +26,16 @@ def save_results(results: List[EvaluationResult], output_path: str | Path) -> No
             "overall_score": result.overall_score,
             "safety_classification": result.safety_classification.value,
             "rubric_scores": [
-                {
-                    "dimension": score.dimension,
-                    "score": score.score,
-                    "reasoning": score.reasoning
-                }
+                {"dimension": score.dimension, "score": score.score, "reasoning": score.reasoning}
                 for score in result.rubric_scores
             ],
             "model_response": result.model_response,
             "evaluator": result.evaluator,
-            "metadata": result.metadata
+            "metadata": result.metadata,
         }
         results_data.append(result_dict)
 
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(results_data, f, indent=2, ensure_ascii=False)
 
     print(f"Results saved to {output_path}")
@@ -76,10 +72,7 @@ def format_results(results: List[EvaluationResult]) -> str:
                 dimension_scores[score.dimension] = []
             dimension_scores[score.dimension].append(score.score)
 
-    dimension_avgs = {
-        dim: sum(scores) / len(scores)
-        for dim, scores in dimension_scores.items()
-    }
+    dimension_avgs = {dim: sum(scores) / len(scores) for dim, scores in dimension_scores.items()}
 
     # Build summary
     summary = f"""
@@ -101,7 +94,7 @@ AVERAGE SCORES BY DIMENSION:
 
     for dim, avg in sorted(dimension_avgs.items(), key=lambda x: x[1], reverse=True):
         bar_length = int(avg * 10)
-        bar = '█' * bar_length + '░' * (50 - bar_length)
+        bar = "█" * bar_length + "░" * (50 - bar_length)
         summary += f"  {dim:40s} {avg:.2f}/5.0  {bar}\n"
 
     summary += f"\n{'='*80}\n"

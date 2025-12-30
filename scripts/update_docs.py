@@ -26,7 +26,7 @@ def generate_tree(
     is_last: bool = True,
     ignore_patterns: Set[str] = None,
     max_depth: int = 3,
-    current_depth: int = 0
+    current_depth: int = 0,
 ) -> List[str]:
     """
     Generate a tree structure of the directory.
@@ -44,14 +44,14 @@ def generate_tree(
     """
     if ignore_patterns is None:
         ignore_patterns = {
-            '__pycache__',
-            '.pytest_cache',
-            '.git',
-            '.gitignore',
-            '__init__.py',  # Skip empty __init__ files in tree
-            '.pyc',
-            'results',
-            '.DS_Store',
+            "__pycache__",
+            ".pytest_cache",
+            ".git",
+            ".gitignore",
+            "__init__.py",  # Skip empty __init__ files in tree
+            ".pyc",
+            "results",
+            ".DS_Store",
         }
 
     if current_depth >= max_depth:
@@ -61,19 +61,13 @@ def generate_tree(
 
     try:
         # Get all items, sorted (directories first, then files)
-        items = sorted(
-            root_dir.iterdir(),
-            key=lambda x: (not x.is_dir(), x.name.lower())
-        )
+        items = sorted(root_dir.iterdir(), key=lambda x: (not x.is_dir(), x.name.lower()))
 
         # Filter out ignored patterns
-        items = [
-            item for item in items
-            if not should_ignore(item, ignore_patterns)
-        ]
+        items = [item for item in items if not should_ignore(item, ignore_patterns)]
 
         for i, item in enumerate(items):
-            is_last_item = (i == len(items) - 1)
+            is_last_item = i == len(items) - 1
 
             # Determine the connector
             connector = "└── " if is_last_item else "├── "
@@ -94,7 +88,7 @@ def generate_tree(
                         is_last=is_last_item,
                         ignore_patterns=ignore_patterns,
                         max_depth=max_depth,
-                        current_depth=current_depth + 1
+                        current_depth=current_depth + 1,
                     )
                 )
 
@@ -114,7 +108,6 @@ def get_description(path: Path) -> str:
         "evaluators": "            # Scoring logic",
         "models": "                # LLM provider adapters",
         "utils": "                 # Helper utilities",
-
         # Files
         "base.py": "           # Abstract base class",
         "litellm_adapter.py": "   # 100+ providers via LiteLLM",
@@ -135,17 +128,12 @@ def update_readme_tree(readme_path: Path, project_root: Path):
 
     # Generate the tree
     tree_lines = [f"{project_root.name}/"]
-    tree_lines.extend(
-        generate_tree(
-            project_root / "parentingbench",
-            max_depth=3
-        )
-    )
+    tree_lines.extend(generate_tree(project_root / "parentingbench", max_depth=3))
 
     tree_content = "\n".join(tree_lines)
 
     # Read current README
-    readme_content = readme_path.read_text(encoding='utf-8')
+    readme_content = readme_path.read_text(encoding="utf-8")
 
     # Find the project structure section
     start_marker = "## Project Structure\n\n```"
@@ -159,14 +147,10 @@ def update_readme_tree(readme_path: Path, project_root: Path):
     start_idx = readme_content.index(start_marker) + len(start_marker)
     end_idx = readme_content.index(end_marker)
 
-    new_content = (
-        readme_content[:start_idx] +
-        "\n" + tree_content + "\n" +
-        readme_content[end_idx:]
-    )
+    new_content = readme_content[:start_idx] + "\n" + tree_content + "\n" + readme_content[end_idx:]
 
     # Write back
-    readme_path.write_text(new_content, encoding='utf-8')
+    readme_path.write_text(new_content, encoding="utf-8")
     print(f"✅ Updated project structure in {readme_path}")
     return True
 

@@ -10,6 +10,7 @@ from parentingbench.models.base import BaseModel
 
 def test_base_model_interface():
     """Test that BaseModel defines the required interface."""
+
     # BaseModel is abstract, so we create a minimal implementation
     class TestModel(BaseModel):
         def generate(self, prompt, system_prompt=None, temperature=0.7, max_tokens=2000, **kwargs):
@@ -39,9 +40,9 @@ def test_litellm_adapter_exists():
         assert issubclass(LiteLLMModel, BaseModel)
 
         # Verify required methods exist
-        assert hasattr(LiteLLMModel, 'generate')
-        assert hasattr(LiteLLMModel, 'get_model_info')
-        assert hasattr(LiteLLMModel, '_detect_provider')
+        assert hasattr(LiteLLMModel, "generate")
+        assert hasattr(LiteLLMModel, "get_model_info")
+        assert hasattr(LiteLLMModel, "_detect_provider")
 
         print("✓ LiteLLMModel has correct structure")
 
@@ -59,8 +60,8 @@ def test_sglang_adapter_exists():
         assert issubclass(SGLangModel, BaseModel)
 
         # Verify required methods exist
-        assert hasattr(SGLangModel, 'generate')
-        assert hasattr(SGLangModel, 'get_model_info')
+        assert hasattr(SGLangModel, "generate")
+        assert hasattr(SGLangModel, "get_model_info")
 
         print("✓ SGLangModel has correct structure")
 
@@ -76,13 +77,15 @@ def test_all_adapters_importable():
             OpenAIModel,
             AnthropicModel,
             LiteLLMModel,
-            SGLangModel
+            SGLangModel,
         )
 
         adapters = [OpenAIModel, AnthropicModel, LiteLLMModel, SGLangModel]
 
         for adapter in adapters:
-            assert issubclass(adapter, BaseModel), f"{adapter.__name__} should inherit from BaseModel"
+            assert issubclass(
+                adapter, BaseModel
+            ), f"{adapter.__name__} should inherit from BaseModel"
 
         print(f"✓ All {len(adapters)} adapters importable and inherit from BaseModel")
 

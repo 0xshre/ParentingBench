@@ -27,7 +27,7 @@ class LiteLLMModel(BaseModel):
         model_name: str,
         api_key: Optional[str] = None,
         api_base: Optional[str] = None,
-        **kwargs
+        **kwargs,
     ):
         """
         Initialize LiteLLM model.
@@ -43,6 +43,7 @@ class LiteLLMModel(BaseModel):
 
         try:
             import litellm
+
             self.litellm = litellm
 
             # Configure LiteLLM
@@ -60,9 +61,7 @@ class LiteLLMModel(BaseModel):
                 litellm.api_base = api_base
 
         except ImportError:
-            raise ImportError(
-                "litellm package not installed. Install with: pip install litellm"
-            )
+            raise ImportError("litellm package not installed. Install with: pip install litellm")
 
     def _detect_provider(self, model_name: str) -> str:
         """Detect provider from model name."""
@@ -83,7 +82,7 @@ class LiteLLMModel(BaseModel):
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate response using LiteLLM.
@@ -111,7 +110,7 @@ class LiteLLMModel(BaseModel):
                 messages=messages,
                 temperature=temperature,
                 max_tokens=max_tokens,
-                **kwargs
+                **kwargs,
             )
 
             return response.choices[0].message.content

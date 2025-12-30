@@ -10,7 +10,9 @@ from parentingbench.utils import load_scenario
 
 def test_load_scenario():
     """Test loading a scenario from YAML."""
-    scenario_path = Path("parentingbench/scenarios/school_age/emotional_mental_health_anxiety_school.yaml")
+    scenario_path = Path(
+        "parentingbench/scenarios/school_age/emotional_mental_health_anxiety_school.yaml"
+    )
 
     if scenario_path.exists():
         scenario = load_scenario(scenario_path)
@@ -34,7 +36,7 @@ def test_scenario_structure():
         context="Test context",
         parent_question="Test question?",
         ideal_response_should_include=["Element 1", "Element 2"],
-        red_flags=["Red flag 1"]
+        red_flags=["Red flag 1"],
     )
 
     assert scenario.scenario_id == "TEST-001"

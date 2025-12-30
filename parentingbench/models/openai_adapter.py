@@ -22,10 +22,13 @@ class OpenAIModel(BaseModel):
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
 
         if not self.api_key:
-            raise ValueError("OpenAI API key required. Set OPENAI_API_KEY environment variable or pass api_key parameter.")
+            raise ValueError(
+                "OpenAI API key required. Set OPENAI_API_KEY environment variable or pass api_key parameter."
+            )
 
         try:
             from openai import OpenAI
+
             self.client = OpenAI(api_key=self.api_key)
         except ImportError:
             raise ImportError("openai package not installed. Install with: pip install openai")
@@ -36,7 +39,7 @@ class OpenAIModel(BaseModel):
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate response using OpenAI API.
@@ -63,15 +66,11 @@ class OpenAIModel(BaseModel):
             messages=messages,
             temperature=temperature,
             max_tokens=max_tokens,
-            **kwargs
+            **kwargs,
         )
 
         return response.choices[0].message.content
 
     def get_model_info(self) -> Dict:
         """Get OpenAI model information."""
-        return {
-            "provider": "openai",
-            "model_name": self.model_name,
-            "api_version": "v1"
-        }
+        return {"provider": "openai", "model_name": self.model_name, "api_version": "v1"}

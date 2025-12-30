@@ -21,15 +21,15 @@ def load_scenario(scenario_path: str | Path) -> Scenario:
     if not scenario_path.exists():
         raise FileNotFoundError(f"Scenario file not found: {scenario_path}")
 
-    with open(scenario_path, 'r', encoding='utf-8') as f:
+    with open(scenario_path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
     # Convert string enums to enum types
-    if isinstance(data.get('age_group'), str):
-        data['age_group'] = AgeGroup(data['age_group'])
+    if isinstance(data.get("age_group"), str):
+        data["age_group"] = AgeGroup(data["age_group"])
 
-    if isinstance(data.get('complexity'), str):
-        data['complexity'] = Complexity(data['complexity'])
+    if isinstance(data.get("complexity"), str):
+        data["complexity"] = Complexity(data["complexity"])
 
     return Scenario(**data)
 

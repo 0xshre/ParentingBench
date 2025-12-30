@@ -27,7 +27,7 @@ class BaseModel(ABC):
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
         max_tokens: int = 2000,
-        **kwargs
+        **kwargs,
     ) -> str:
         """
         Generate a response to the given prompt.
