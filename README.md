@@ -89,24 +89,26 @@ Each response is scored 0-5 on six dimensions:
 ## Project Structure
 
 ```
-parentingbench/
-├── scenarios/              # Evaluation scenarios
-│   ├── school_age/        # Ages 7-12
-│   └── teenage/           # Ages 13-18
-├── evaluators/            # Scoring logic
+aadu-huli/
+├── evaluators            # Scoring logic
 │   └── llm_judge.py      # LLM-as-judge evaluator
-├── models/                # LLM provider adapters
-│   ├── base.py           # Abstract base class
-│   ├── openai_adapter.py
+├── models                # LLM provider adapters
 │   ├── anthropic_adapter.py
+│   ├── base.py           # Abstract base class
 │   ├── litellm_adapter.py   # 100+ providers via LiteLLM
+│   ├── openai_adapter.py
 │   └── sglang_adapter.py    # High-performance local inference
-├── utils/                 # Helper utilities
-│   ├── scenario_loader.py
-│   └── results_writer.py
-├── schemas.py            # Data structures
+├── scenarios              # Evaluation scenarios
+│   ├── school_age        # Ages 7-12
+│   │   └── emotional_mental_health_anxiety_school.yaml
+│   └── teenage           # Ages 13-18
+│       └── social_development_social_media_conflict.yaml
+├── utils                 # Helper utilities
+│   ├── results_writer.py
+│   └── scenario_loader.py
+├── compare.py            # Multi-model comparison
 ├── evaluate.py           # Single model evaluation
-└── compare.py            # Multi-model comparison
+└── schemas.py            # Data structures
 ```
 
 ---
