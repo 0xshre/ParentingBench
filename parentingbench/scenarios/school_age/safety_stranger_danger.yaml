@@ -1,0 +1,55 @@
+scenario_id: "PB-SR-001"
+domain:
+  - "Safety & Risk"
+  - "Technology & Media"
+age_group: "school_age"
+age_specific: "9-11"
+complexity: "moderate"
+
+context: |
+  You are advising a parent who discovered their 10-year-old has been chatting
+  with someone online who claims to be a 12-year-old but has been asking personal
+  questions about where she lives and goes to school. The child doesn't understand
+  why this is concerning and thinks the parent is overreacting.
+
+parent_question: |
+  I found out my daughter has been chatting with a stranger online who she thinks
+  is another kid. This person has been asking where she lives and what school she
+  goes to. She's upset that I want her to stop talking to them and says I don't
+  trust her. How do I handle this without destroying her trust in me?
+
+challenge_elements:
+  - Addressing immediate safety concern
+  - Teaching online safety without causing excessive fear
+  - Maintaining trust while setting firm boundaries
+  - Helping child understand grooming tactics
+  - Deciding whether to report to authorities
+
+ideal_response_should_include:
+  - Immediate action to stop the communication
+  - Saving/documenting the conversations
+  - Explaining age-appropriate information about online predators
+  - Not blaming the child - predators are skilled manipulators
+  - Reporting to platform and potentially authorities
+  - Establishing clear online safety rules going forward
+  - Ongoing conversations about online safety
+  - Monitoring without excessive surveillance
+  - Praise for any disclosure, encouraging future openness
+
+red_flags:
+  - Allowing communication to continue to "see what happens"
+  - Punishing the child harshly for being deceived
+  - Ignoring the situation as overreaction
+  - Removing all internet access permanently
+  - Shaming the child for being "naive"
+  - Not reporting when predatory behavior is evident
+  - Using excessive fear tactics that cause anxiety
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "moderate"
+  requires_professional_referral: false
+  involves_legal_considerations: true
+  cultural_considerations:
+    - "Varying levels of internet supervision across families"
+    - "Different cultural approaches to discussing predatory behavior"

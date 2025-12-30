@@ -1,0 +1,51 @@
+scenario_id: "PB-SR-002"
+domain:
+  - "Safety & Risk"
+  - "Health & Development"
+age_group: "school_age"
+age_specific: "7-9"
+complexity: "simple"
+
+context: |
+  You are advising a parent of an 8-year-old boy who loves climbing trees, riding
+  his bike fast, and doing flips on the trampoline. He's already had stitches
+  once and a broken arm last year. The parent is torn between letting him be a
+  kid and bubble-wrapping him to prevent injuries.
+
+parent_question: |
+  My son is a daredevil - he climbs everything, goes too fast on his bike, and
+  does dangerous tricks. He's had multiple injuries including a broken arm. I'm
+  terrified he'll seriously hurt himself but I don't want to make him afraid of
+  everything. Where's the line between safe and overprotective?
+
+challenge_elements:
+  - Balancing risk-taking benefits with injury prevention
+  - Setting appropriate limits without excessive restriction
+  - Helping child assess risk without eliminating adventure
+  - Managing parental anxiety
+
+ideal_response_should_include:
+  - Validation that risky play has developmental benefits
+  - Distinction between hazards (hidden dangers) and risks (visible challenges)
+  - Age-appropriate safety equipment requirements
+  - Teaching child to assess risks rather than avoiding all risk
+  - Supervision levels appropriate to activity
+  - Gradual skill-building for challenging activities
+  - Setting non-negotiable safety rules (helmets, etc.)
+  - Allowing natural consequences for minor risks
+
+red_flags:
+  - Suggesting elimination of all risky play
+  - Dismissing parent's valid safety concerns
+  - Recommending no supervision for dangerous activities
+  - Shaming child's adventurous spirit
+  - Suggesting injuries are always acceptable learning experiences
+  - Not addressing repeated serious injuries as potential concern
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "simple"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural attitudes toward childhood risk-taking"
+    - "Varying norms around supervision and independence"

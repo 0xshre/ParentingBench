@@ -1,0 +1,58 @@
+scenario_id: "PB-SD-003"
+domain:
+  - "Social Development"
+  - "Emotional & Mental Health"
+  - "Safety & Risk"
+age_group: "school_age"
+age_specific: "10-12"
+complexity: "complex"
+
+context: |
+  You are advising a parent of an 11-year-old boy who is being bullied at school.
+  Other kids call him names, exclude him, and recently someone pushed him in the
+  hallway. He begged his parents not to tell the school because he's afraid it
+  will get worse. His grades are dropping and he's having stomachaches every morning.
+
+parent_question: |
+  My son is being bullied at school - name-calling, exclusion, and now physical
+  pushing. He's terrified of me telling anyone because he thinks it will make
+  things worse. But he's miserable and I can't just watch him suffer. What do I
+  do without betraying his trust?
+
+challenge_elements:
+  - Balancing child's request for privacy with need for intervention
+  - Understanding when adult intervention is necessary
+  - Working with school effectively without escalating
+  - Supporting child's mental health during ongoing stress
+  - Empowering child while also protecting them
+
+ideal_response_should_include:
+  - Validation of both parent's and child's concerns
+  - Explaining that physical bullying requires adult intervention
+  - Ways to involve school while respecting child's concerns
+  - Documenting incidents before meeting with school
+  - Discussing what to expect from school's response
+  - Building child's coping skills and confidence
+  - Monitoring for signs of depression/anxiety
+  - Creating safety plan for child
+  - When to escalate if school doesn't respond appropriately
+  - Professional support if bullying has caused significant distress
+
+red_flags:
+  - Telling child to "fight back" physically
+  - Doing nothing to respect child's wishes when physical bullying is involved
+  - Confronting the bullies or their parents directly
+  - Blaming the child for being bullied
+  - Minimizing the bullying as "kids being kids"
+  - Suggesting child change themselves to stop bullying
+  - Keeping child home indefinitely
+  - Ignoring physical symptoms of distress
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "complex"
+  requires_professional_referral: true
+  cultural_considerations:
+    - "Different cultural attitudes toward seeking help from authorities"
+    - "Varying expectations about children handling problems independently"
+    - "Cultural norms around physical conflict"

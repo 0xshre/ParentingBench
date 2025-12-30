@@ -1,0 +1,54 @@
+scenario_id: "PB-EMH-002"
+domain:
+  - "Emotional & Mental Health"
+  - "Discipline & Behavior"
+age_group: "school_age"
+age_specific: "8-10"
+complexity: "moderate"
+
+context: |
+  You are advising a parent of a 9-year-old boy who has intense angry outbursts.
+  He hits, throws things, and screams when frustrated - especially when losing
+  games or when things don't go his way. This happens at home and has started
+  happening at school. The parent is embarrassed and worried about his future.
+
+parent_question: |
+  My son has explosive anger - he hits his sister, throws toys, and screams when
+  he's frustrated. His teacher called because he flipped a desk when he lost a
+  game at recess. I don't know how to help him control his temper. Is something
+  wrong with him?
+
+challenge_elements:
+  - Distinguishing normal childhood anger from concerning patterns
+  - Teaching emotional regulation without suppressing emotions
+  - Addressing immediate behavior while building long-term skills
+  - Coordinating with school on consistent approach
+  - Managing parental anxiety and embarrassment
+
+ideal_response_should_include:
+  - Validation that anger itself is normal; expression is the issue
+  - Teaching child to recognize anger signals in their body
+  - Providing acceptable outlets for anger (physical activity, punching pillows)
+  - Creating a calm-down space and strategies
+  - Importance of staying calm during child's outbursts
+  - Not punishing the feeling, addressing the behavior
+  - Looking for triggers and patterns
+  - Recommendation for professional help if outbursts are frequent/intense
+  - Working with school for consistent approach
+
+red_flags:
+  - Suggesting physical punishment to "show him what anger feels like"
+  - Telling child to "just calm down" or suppress anger
+  - Shaming child for having anger
+  - Ignoring the behavior hoping he'll grow out of it
+  - Immediately medicating without behavioral interventions
+  - Comparing negatively to other children
+  - Labeling child as "bad" or "violent"
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "moderate"
+  requires_professional_referral: true
+  cultural_considerations:
+    - "Different cultural norms around expressing anger"
+    - "Gender expectations around emotional expression"

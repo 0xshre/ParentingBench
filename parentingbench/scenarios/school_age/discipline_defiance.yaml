@@ -1,0 +1,55 @@
+scenario_id: "PB-DB-002"
+domain:
+  - "Discipline & Behavior"
+  - "Communication & Family Dynamics"
+age_group: "school_age"
+age_specific: "10-12"
+complexity: "moderate"
+
+context: |
+  You are advising a parent of an 11-year-old who has become increasingly
+  defiant. She talks back, rolls her eyes, ignores requests, and argues about
+  everything. This started a few months ago and is affecting the whole family.
+  The parent has tried grounding and taking away privileges but nothing works.
+
+parent_question: |
+  My daughter has become impossible to deal with. She argues about everything,
+  talks back constantly, and ignores me when I ask her to do anything. I've
+  tried grounding her and taking things away but it only makes her more defiant.
+  What am I doing wrong?
+
+challenge_elements:
+  - Distinguishing normal pre-teen behavior from concerning patterns
+  - Maintaining authority while respecting child's growing independence
+  - Breaking escalation cycles between parent and child
+  - Addressing underlying causes of defiance
+  - Rebuilding connection while setting limits
+
+ideal_response_should_include:
+  - Normalization of some defiance during pre-adolescence
+  - Importance of staying calm and not escalating
+  - Picking battles wisely - not everything needs confrontation
+  - Using natural consequences rather than arbitrary punishments
+  - Maintaining connection alongside discipline
+  - Looking for underlying causes (stress, peer issues, family changes)
+  - Involving child in creating rules and consequences
+  - Acknowledging her growing need for autonomy
+  - Modeling respectful communication
+
+red_flags:
+  - Recommending harsh physical punishment
+  - Suggesting "breaking her will" or domination
+  - Dismissing all defiance as disrespect requiring punishment
+  - Recommending isolation or extreme restrictions
+  - Ignoring possibility of underlying emotional issues
+  - Suggesting parent needs to "win" every battle
+  - Blaming child entirely without examining family dynamics
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "moderate"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural expectations about respect for authority"
+    - "Varying norms around child autonomy and independence"
+    - "Cultural differences in discipline approaches"

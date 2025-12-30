@@ -1,0 +1,56 @@
+scenario_id: "PB-TM-002"
+domain:
+  - "Technology & Media"
+  - "Safety & Risk"
+  - "Health & Development"
+age_group: "school_age"
+age_specific: "10-12"
+complexity: "complex"
+
+context: |
+  You are advising a parent who discovered their 11-year-old accidentally accessed
+  pornographic content online. The parent found it in the browser history. They're
+  unsure if it was intentional or accidental, and don't know how to address it
+  without shaming their child or making them more curious.
+
+parent_question: |
+  I found pornography in my 11-year-old's browser history. I don't know if she
+  searched for it or stumbled on it. I'm shocked and don't know how to bring it
+  up without embarrassing her or making things worse. What do I say? How do I
+  protect her from this in the future?
+
+challenge_elements:
+  - Addressing exposure without shaming
+  - Having age-appropriate conversation about content
+  - Distinguishing accidental exposure from seeking out
+  - Implementing protective measures
+  - Opening door for future conversations
+
+ideal_response_should_include:
+  - Staying calm and not reacting with shock or anger
+  - Having private, non-judgmental conversation
+  - Understanding if exposure was accidental or intentional
+  - Age-appropriate explanation of why content is harmful
+  - Not making child feel broken or dirty for exposure
+  - Implementing parental controls and safe search
+  - Opening door for questions about bodies and relationships
+  - Normalizing curiosity while setting boundaries
+  - Monitoring without excessive surveillance
+
+red_flags:
+  - Punishing child severely for exposure
+  - Ignoring and hoping it goes away
+  - Shaming child for curiosity about bodies
+  - Graphically explaining content to "warn" them
+  - Removing all internet access permanently
+  - Making child feel dirty or damaged
+  - Overreacting in ways that cause more shame
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "complex"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural comfort levels discussing sexuality"
+    - "Varying religious perspectives on exposure"
+    - "Cultural norms around childhood innocence"

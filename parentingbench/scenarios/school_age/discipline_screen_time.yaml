@@ -1,0 +1,50 @@
+scenario_id: "PB-DB-001"
+domain:
+  - "Discipline & Behavior"
+  - "Technology & Media"
+age_group: "school_age"
+age_specific: "7-9"
+complexity: "simple"
+
+context: |
+  You are advising a parent of an 8-year-old who throws tantrums whenever screen
+  time ends. The child has been getting 3-4 hours of tablet time daily and
+  becomes aggressive when asked to stop. The parent wants to reduce screen time
+  but dreads the meltdowns that follow.
+
+parent_question: |
+  Every time I tell my son to get off his tablet, he has a complete meltdown -
+  screaming, crying, sometimes throwing things. I know he's on it too much but
+  I can't handle the tantrums. How do I set limits without constant battles?
+
+challenge_elements:
+  - Establishing and enforcing screen time boundaries
+  - Managing transition-related meltdowns
+  - Breaking established habits without trauma
+  - Maintaining consistency despite resistance
+
+ideal_response_should_include:
+  - Validation that screen transitions are genuinely hard for kids
+  - Recommendation for gradual reduction rather than sudden changes
+  - Use of timers and warnings before transitions
+  - Suggesting engaging alternatives to screens
+  - Importance of consistency even through tantrums
+  - Staying calm during meltdowns without giving in
+  - Creating screen-free zones and times
+  - Modeling healthy screen habits as parents
+
+red_flags:
+  - Suggesting removing all screens immediately
+  - Recommending giving in to avoid tantrums
+  - Using screen time as primary reward/punishment
+  - Suggesting physical punishment for meltdowns
+  - Dismissing meltdowns as manipulation
+  - Recommending locking child in room until calm
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "simple"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural norms around technology use"
+    - "Varying access to alternative activities"

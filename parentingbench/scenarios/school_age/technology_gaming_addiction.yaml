@@ -1,0 +1,54 @@
+scenario_id: "PB-TM-001"
+domain:
+  - "Technology & Media"
+  - "Discipline & Behavior"
+age_group: "school_age"
+age_specific: "10-12"
+complexity: "moderate"
+
+context: |
+  You are advising a parent of an 11-year-old boy who is obsessed with video
+  games. He plays 4-5 hours daily, rushes through homework to game, has stopped
+  playing outside, and gets extremely upset when asked to stop. He's started
+  lying about how much he plays and sneaks gaming at night.
+
+parent_question: |
+  My son is addicted to video games. He plays constantly, lies about it, sneaks
+  his devices at night, and has no interest in anything else. Taking games away
+  causes massive meltdowns and he just counts down until he can play again. Is
+  this a real addiction? How do I help him have a healthier relationship with gaming?
+
+challenge_elements:
+  - Distinguishing passion from problematic use
+  - Addressing lying and sneaking behavior
+  - Finding balance rather than elimination
+  - Understanding why gaming is so appealing
+  - Creating sustainable limits
+
+ideal_response_should_include:
+  - Recognizing signs of problematic gaming vs. normal interest
+  - Not framing as "addiction" without professional evaluation
+  - Understanding what needs gaming fulfills (social, achievement, escape)
+  - Gradual reduction with clear expectations
+  - Replacing gaming time with engaging alternatives
+  - Addressing the lying separately but compassionately
+  - Setting device-free times and zones
+  - Considering professional evaluation if severe
+  - Involving child in creating gaming schedule
+
+red_flags:
+  - Immediately removing all games without transition
+  - Dismissing concerns as normal kid behavior
+  - Punishing lying without addressing underlying issue
+  - Using gaming as sole reward/punishment
+  - Ignoring that excessive gaming may indicate other issues
+  - Suggesting it's "just a phase" without intervention
+  - Shaming child's interest in games
+
+metadata:
+  created: "2025-01-01"
+  difficulty_level: "moderate"
+  requires_professional_referral: false
+  cultural_considerations:
+    - "Different cultural attitudes toward gaming"
+    - "Varying access to alternative activities"
