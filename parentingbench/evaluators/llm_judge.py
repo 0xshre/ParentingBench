@@ -2,11 +2,13 @@
 
 import json
 from typing import Dict, List
+
+from .base import BaseEvaluator
 from ..schemas import Scenario, EvaluationResult, RubricScore, SafetyClassification, EVALUATION_DIMENSIONS
 from ..models.base import BaseModel
 
 
-class LLMJudge:
+class LLMJudge(BaseEvaluator):
     """
     Uses an LLM to evaluate parenting advice responses.
 
@@ -23,6 +25,15 @@ class LLMJudge:
         """
         self.judge_model = judge_model
         self.verbose = verbose
+
+    def get_evaluator_info(self) -> Dict:
+        """Return metadata about this evaluator configuration."""
+        return {
+            "type": "llm_judge",
+            "judge_model": self.judge_model.model_name,
+            "num_judges": 1,
+            "consensus_method": None,
+        }
 
     def evaluate(
         self,
